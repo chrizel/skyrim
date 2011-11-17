@@ -978,4 +978,73 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Archery'
+    perks: [
+      {
+        name: 'Overdraw'
+        levels: 5
+        desc: ['Bows do 20% more damage.', 'Bows do 40% more damage.', 'Bows do 60% more damage.', 'Bows do 80% more damage.', 'Bows do 100% more damage.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Eagle Eye'
+        desc: ['Pressing Block while aiming will zoom in your view.']
+        req: [30]
+        pos: [-74, -54]
+        deps: [0]
+      }
+      {
+        name: 'Critical Shot'
+        desc: ['10% chance of a critical hit that does extra damage.']
+        req: [30]
+        pos: [-15, -69]
+        deps: [0]
+      }
+      {
+        name: 'Steady Hand'
+        levels: 2
+        desc: ['Zooming in with a bow slows time by 25%.', 'Zooming in with a bow slows time by 50%.']
+        req: [40]
+        pos: [-49, -68]
+        deps: [1]
+      }
+      {
+        name: 'Power Shot'
+        desc: ['Arrows stagger all but the largest opponents 50% of the time.']
+        req: [50]
+        pos: [-92, -97]
+        deps: [1]
+      }
+      {
+        name: 'Quick Shot'
+        desc: ['Can draw a bow 30% faster.']
+        req: [70]
+        pos: [-91, -151]
+        deps: [4]
+      }
+      {
+        name: "Hunter's Discipline"
+        desc: ['Recover twice as many arrows from dead bodies.']
+        req: [50]
+        pos: [-39, -121]
+        deps: [2]
+      }
+      {
+        name: 'Ranger'
+        desc: ['Able to move faster with a drawn bow.']
+        req: [60]
+        pos: [-47, -141]
+        deps: [6]
+      }
+      {
+        name: 'Bullseye'
+        desc: ['15% chance of paralyzing the target for a few seconds.']
+        req: [100]
+        pos: [-65, -166]
+        deps: [5, 7]
+      }
+    ]
+  }
 ]
