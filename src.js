@@ -192,6 +192,78 @@ var perkData = [
             pos: [57, -40],
             deps: [0]
         }
+    ]},
+    {name: 'Alteration', perks: [
+        {
+            name: 'Novice Alteration',
+            desc: ['Cast Novice level Alteration spells for half magicka.'],
+            pos: [0, 0]
+        },
+        {
+            name: 'Alteration Dual Casting',
+            desc: ['Dual casting an Alteration spell overcharges the effects into an even more powerful version.'],
+            req: [20],
+            pos: [-32, -56],
+            deps: [0]
+        },
+        {
+            name: 'Apprentice Alteration',
+            desc: ['Cast Apprentice level Alteration spells for half magicka.'],
+            req: [25],
+            pos: [8, -72],
+            deps: [0]
+        },
+        {
+            name: 'Mage Armor',
+            levels: 3,
+            desc: ['Protection spells like Stoneflesh are twice as strong if not wearing armor.', 'Protection spells like Stoneflesh are three times as strong if not wearing armor.', 'Protection spells like Stoneflesh are four times as strong if not wearing armor.'],
+            req: [30, 30, 30],
+            pos: [-28, -124],
+            deps: [2]
+        },
+        {
+            name: 'Magic Resistance',
+            levels: 3,
+            desc: ["Blocks 10% of a spell's effects.", "Blocks 15% of a spell's effects.", "Blocks 20% of a spell's effects."],
+            req: [30, 30, 30],
+            pos: [50, -124],
+            deps: [2]
+        },
+        {
+            name: 'Adept Alteration',
+            desc: ['Cast Adept level Alteration spells for half magicka.'],
+            req: [50],
+            pos: [8, -135],
+            deps: [2]
+        },
+        {
+            name: 'Stability',
+            desc: ['Alteration spells have greater duration.'],
+            req: [70],
+            pos: [-18, -162],
+            deps: [5]
+        },
+        {
+            name: 'Expert Alteration',
+            desc: ['Cast Expert level Alteration spells for half magicka.'],
+            req: [75],
+            pos: [30, -162],
+            deps: [5]
+        },
+        {
+            name: 'Atronach',
+            desc: ['Absorb 30% of the magicka of any spells that hit you.'],
+            req: [100],
+            pos: [-41, -198],
+            deps: [7]
+        },
+        {
+            name: 'Master Alteration',
+            desc: ['Cast Master level Alteration spells for half magicka.'],
+            req: [100],
+            pos: [70, -198],
+            deps: [7]
+        }
     ]}
 ];
 
@@ -369,11 +441,11 @@ function redraw() {
     }
     */
 
-    drawPerkTree(ctx, perkData[1]);
+    drawPerkTree(ctx, perkData[2]);
 }
 
 function perkAtPosition(x, y) {
-    var perkArray = perkData[1].perks;
+    var perkArray = perkData[2].perks;
 
     var perkSize = perkCircleRadius * zoom;
     for (var i = 0; i < perkArray.length; i++) {
