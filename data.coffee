@@ -1047,4 +1047,51 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Light Armor'
+    perks: [
+      {
+        name: 'Agile Defender'
+        desc: ['Increase armor rating for Light armor by 20%.']
+        req: [0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Custom Fit'
+        desc: ['25% Armor bonus if wearing all Light Armor: head, chest, hands, feet.']
+        req: [30]
+        pos: [-15, -62]
+        deps: [0]
+      }
+      {
+        name: 'Unhindered'
+        desc: ["Light Armor weighs nothing and doesn't slow you down when worn."]
+        req: [50]
+        pos: [-47, -110]
+        deps: [1]
+      }
+      {
+        name: 'Matching Set'
+        desc: ['Additional 25% Armor bonus if wearing a matched set of Light Armor.']
+        req: [70]
+        pos: [8, -153]
+        deps: [1]
+      }
+      {
+        name: 'Wind Walker'
+        desc: ['Stamina regenerates 50% faster in all Light Armor: head, chest, hands, feet.']
+        req: [60]
+        pos: [-42, -143]
+        deps: [2]
+      }
+      {
+        name: 'Deft Movement'
+        desc: ['10% chance of avoiding all damage from a melee attack while wearing all Light Armor: head, chest, hands, feet.']
+        req: [100]
+        pos: [-15, -170]
+        captionOffset: [0, -13]
+        deps: [3, 4]
+      }
+    ]
+  }
 ]
