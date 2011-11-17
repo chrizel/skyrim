@@ -1,15 +1,12 @@
 $canvas = null
-transX = 500
-transY = 650
-zoom = 3.0
 perkCircleRadius = 3
 hoveredPerk = null
-activePerkTree = null
+activePerkTreeView = null
 
 activePerkLevels = {}
 
 perkTrees = window.perkTrees
-
+perkTreeViews = []
 
 perkId = (perk) ->
   i = 0
@@ -75,6 +72,20 @@ getPerkDisplayName = (perk) ->
   "#{perk.name} (#{activeLevel}/#{maxLevels})"
 
 
+getPerkInfos = (perkTree) ->
+  result =
+    active: 0
+    max: 0
+    req: 0
+  for perk in perkTree.perks
+    maxLevels = perk.levels || 1
+    req = perk.req || [0]
+    level = getPerkLevel(perk)
+    result.active += level
+    result.max += maxLevels
+    result.req = Math.max(result.req, req[level-1]) if level > 0
+  result
+
 changePerkLevel = (perk, inc) ->
   ok = true
 
@@ -92,68 +103,121 @@ changePerkLevel = (perk, inc) ->
   activePerkLevels[perkId(perk)] = newLevel
 
 
-drawPerkTree = (ctx, perkTree, captions, scale) ->
-  ctx.save()
-  ctx.scale(scale, scale)
+class PerkTreeView
+  constructor: (@model, @frame, @scale) ->
 
-  # Draw dependency lines...
-  for perk in perkTree.perks
-    if perk.deps
+  perkTreeSize: ->
+    minx = maxx = miny = maxy = 0
+    for perk in @model.perks
+      minx = perk.pos[0] if perk.pos[0] < minx
+      maxx = perk.pos[0] if perk.pos[0] > maxx
+      miny = perk.pos[1] if perk.pos[1] < miny
+      maxy = perk.pos[1] if perk.pos[1] > maxy
+    return [Math.abs(minx-maxx)*@scale, Math.abs(miny-maxy)*@scale]
+
+  hitFrame: (x, y) ->
+    (x >= @frame[0]) &&
+    (x <= @frame[0]+@frame[2]) &&
+    (y >= @frame[1]) &&
+    (y <= @frame[1]+@frame[3])
+
+  perkAtPosition: (x, y) ->
+    result = null
+    perkSize = perkCircleRadius * @scale
+    root = @root()
+    for perk in @model.perks
+      perkX = perk.pos[0]*@scale+root[0]
+      perkY = perk.pos[1]*@scale+root[1]
+
+      if x >= (perkX-perkSize) &&
+         x <= (perkX+perkSize) &&
+         y >= (perkY-perkSize) &&
+         y <= (perkY+perkSize)
+        result = perk
+        break
+
+    return result
+
+  root: ->
+    perkTreeSize = @perkTreeSize()
+    x = @frame[0] + Math.abs(@frame[2] - perkTreeSize[0])/2 + perkTreeSize[0]/2
+    y = @frame[1] + @frame[3]/2 + perkTreeSize[1]/2
+    return [x, y]
+
+  draw: (ctx, captions, title) ->
+    ctx.save()
+
+    isActivePerkTree = activePerkTreeView && activePerkTreeView.model == @model
+    
+    ctx.fillStyle = if isActivePerkTree then 'rgb(0,0,0)' else 'rgb(30,30,30)'
+    ctx.fillRect(@frame[0], @frame[1], @frame[2], @frame[3])
+
+    root = @root()
+    ctx.translate(root[0], root[1])
+    ctx.scale(@scale, @scale)
+
+    # Draw dependency lines...
+    for perk in @model.perks
+      if perk.deps
+        level = getPerkLevel(perk)
+        for dep in perk.deps
+          depPerk = @model.perks[dep]
+          ctx.beginPath()
+          ctx.lineWidth = if level > 0 then 1.5 else 0.5
+          ctx.strokeStyle = if level > 0 then 'rgba(100, 150, 230, 1.0)' else 'rgba(100, 150, 230, 0.5)'
+          ctx.moveTo(depPerk.pos[0], depPerk.pos[1])
+          ctx.lineTo(perk.pos[0], perk.pos[1])
+          ctx.stroke()
+
+    # Draw perks ...
+    for perk in @model.perks
       level = getPerkLevel(perk)
-      for dep in perk.deps
-        depPerk = perkTree.perks[dep]
-        ctx.beginPath()
-        ctx.lineWidth = if level > 0 then 1.5 else 0.5
-        ctx.strokeStyle = if level > 0 then 'rgba(100, 150, 230, 1.0)' else 'rgba(100, 150, 230, 0.5)'
-        ctx.moveTo(depPerk.pos[0], depPerk.pos[1])
-        ctx.lineTo(perk.pos[0], perk.pos[1])
-        ctx.stroke()
 
-  # Draw perks ...
-  for perk in perkTree.perks
-    level = getPerkLevel(perk)
+      ctx.beginPath()
+      if perk == hoveredPerk
+        ctx.fillStyle = 'rgb(255, 0, 0)'
+      else
+        ctx.fillStyle = if level > 0 then 'rgba(230, 230, 150, 1.0)' else 'rgba(230, 100, 150, 0.5)'
 
-    ctx.beginPath()
-    if perk == hoveredPerk
-      ctx.fillStyle = 'rgb(255, 0, 0)'
-    else
-      ctx.fillStyle = if level > 0 then 'rgba(230, 230, 150, 1.0)' else 'rgba(230, 100, 150, 0.5)'
+      radius = perkCircleRadius * if level > 0 then 1 else 0.5
+      ctx.arc(perk.pos[0], perk.pos[1], radius, 0, Math.PI*2, true)
+      ctx.fill()
 
-    radius = perkCircleRadius * if level > 0 then 1 else 0.5
-    ctx.arc(perk.pos[0], perk.pos[1], radius, 0, Math.PI*2, true)
-    ctx.fill()
+      if captions
+        ctx.save()
 
-    if captions
+        perkName = getPerkDisplayName(perk)
+
+        ctx.font = "bold 4px Arial"
+        w = ctx.measureText(perkName).width
+
+        captionOffset = perk.captionOffset || [0, 0]
+
+        ctx.translate(perk.pos[0]+captionOffset[0], perk.pos[1]+8+captionOffset[1])
+        #ctx.rotate(Math.PI/4-0.2)
+        #ctx.rotate(0.2)
+        ctx.translate(-w/2, 0)
+
+        ctx.fillStyle = if level > 0 then 'rgba(255, 255, 255, 1.0)' else 'rgba(200, 200, 200, 0.5)'
+
+        ctx.shadowColor = 'rgb(0,0,0)'
+        ctx.shadowOffsetX = 2
+        ctx.shadowOffsetY = 2
+        ctx.shadowBlur = 2
+
+        ctx.fillText(perkName, 0, 0, 0)
+        ctx.restore()
+
+
+    ctx.restore()
+  
+    if title
       ctx.save()
-
-      perkName = getPerkDisplayName(perk)
-
-      ctx.font = "bold 4px Arial"
-      w = ctx.measureText(perkName).width
-
-      captionOffset = perk.captionOffset || [0, 0]
-
-      ctx.translate(perk.pos[0]+captionOffset[0], perk.pos[1]+8+captionOffset[1])
-      #ctx.rotate(Math.PI/4-0.2)
-      #ctx.rotate(0.2)
-      ctx.translate(-w/2, 0)
-
-      ctx.fillStyle = if level > 0 then 'rgba(255, 255, 255, 1.0)' else 'rgba(200, 200, 200, 0.5)'
-
-      ctx.shadowColor = 'rgb(0,0,0)'
-      ctx.shadowOffsetX = 2
-      ctx.shadowOffsetY = 2
-      ctx.shadowBlur = 2
-
-      ctx.fillText(perkName, 0, 0, 0)
+      ctx.fillStyle = if isActivePerkTree then 'rgb(255,255,255)' else 'rgb(200,200,200)'
+      ctx.font = 'bold 12px Arial'
+      w = ctx.measureText(@model.name).width
+      ctx.fillText(@model.name, @frame[0]+@frame[2]/2-w/2, @frame[1]+@frame[3]-5, 0)
       ctx.restore()
-
-  ctx.fillStyle = 'rgb(200,200,200)'
-  ctx.font = 'bold 12px Arial'
-  w = ctx.measureText(perkTree.name).width
-  ctx.fillText(perkTree.name, -w/2, 30, 0)
-
-  ctx.restore()
 
 
 redraw = ->
@@ -161,44 +225,25 @@ redraw = ->
 
   ctx = $canvas[0].getContext("2d")
   ctx.save()
-  ctx.fillStyle = 'rgb(0,0,0)'
+  ctx.fillStyle = 'rgb(10,10,10)'
   ctx.fillRect(0, 0, $canvas.width(), $canvas.height())
 
-  if activePerkTree
-    ctx.translate(transX, transY)
-    drawPerkTree(ctx, activePerkTree, true, zoom)
-  else
-    ctx.translate(100, 200)
+  for perkTreeView in perkTreeViews
+    perkTreeView.draw ctx, false, true
+  if activePerkTreeView
+    activePerkTreeView.draw ctx, true, false
 
-    drawPerkTree(ctx, perkTrees[0], false, 0.8)
+    perkInfos = getPerkInfos(activePerkTreeView.model)
 
-    ctx.translate(200, 0)
-    drawPerkTree(ctx, perkTrees[1], false, 0.8)
+    ctx.fillStyle = 'rgba(255,255,255,0.7)'
+    ctx.font = 'bold 20px Arial'
+    ctx.fillText(activePerkTreeView.model.name, 335, 40)
+    ctx.font = 'bold 10px Arial'
+    ctx.fillText("Active perks: #{perkInfos.active} of #{perkInfos.max}", 335, 60)
+    ctx.fillText("Required skill level: #{perkInfos.req}", 335, 75)
 
-    ctx.translate(200, 0)
-    drawPerkTree(ctx, perkTrees[2], false, 0.8)
 
   ctx.restore()
-
-
-perkAtPosition = (x, y) ->
-  if !activePerkTree
-    return null
-
-  result = null
-  perkSize = perkCircleRadius * zoom
-  for perk in activePerkTree.perks
-    perkX = perk.pos[0]*zoom+transX
-    perkY = perk.pos[1]*zoom+transY
-
-    if x >= (perkX-perkSize) &&
-       x <= (perkX+perkSize) &&
-       y >= (perkY-perkSize) &&
-       y <= (perkY+perkSize)
-      result = perk
-      break
-
-  return result
 
 
 downHandler = (e) ->
@@ -206,19 +251,21 @@ downHandler = (e) ->
   x = e.pageX - offset.left
   y = e.pageY - offset.top
 
-  if activePerkTree
-    perk = perkAtPosition(x, y)
+  if activePerkTreeView && activePerkTreeView.hitFrame(x, y)
+    perk = activePerkTreeView.perkAtPosition(x, y)
     if perk
       changePerkLevel(perk, if e.button == 2 then -1 else 1)
       redraw()
   else
-    col = Math.floor(x / 200)
-    if col >= perkTrees.length
-      alert('TODO!')
-      return
+    for perkTreeView in perkTreeViews
+      if perkTreeView.hitFrame(x, y)
+        activePerkTreeView.model = perkTreeView.model
+        redraw()
+        break
 
-    activePerkTree = perkTrees[col]
-    redraw()
+
+setCursor = (pointer) ->
+  document.body.style.cursor = if pointer then 'pointer' else 'default'
 
 
 moveHandler = (e) ->
@@ -226,21 +273,26 @@ moveHandler = (e) ->
   x = e.pageX - offset.left
   y = e.pageY - offset.top
 
-  if activePerkTree
-    perk = perkAtPosition(x, y)
+  if activePerkTreeView && activePerkTreeView.hitFrame(x, y)
+    perk = activePerkTreeView.perkAtPosition(x, y)
     if perk
-      document.body.style.cursor = 'pointer'
+      setCursor true
       hoveredPerk = perk
       redraw()
     else if hoveredPerk
-      document.body.style.cursor = 'default'
+      setCursor false
       hoveredPerk = null
       redraw()
   else
-    return #TODO
+    setCursor false
+    for perkTreeView in perkTreeViews
+      if perkTreeView.hitFrame(x, y)
+        document.body.style.cursor = 'pointer'
+        setCursor true
+        break
 
 window.showAllPerks = ->
-  activePerkTree = null
+  activePerkTreeView = null
   redraw()
 
 $ ->
@@ -248,6 +300,24 @@ $ ->
   if !$canvas[0].getContext
     $canvas = null
     return
+
+  perkTreeViews = []
+  cols = 3
+  padding = 5
+  i = 0
+  x = padding
+  y = padding
+  width = 100
+  height = 127
+  activePerkTreeView = new PerkTreeView(perkTrees[0], [320, padding, 670, 787], 2.5)
+  for foo in [1, 2, 3, 4, 5, 6]
+    for perkTree in perkTrees
+      perkTreeViews.push new PerkTreeView(perkTree, [x, y, width, height], 0.4)
+      i++
+      x += width + padding
+      if (i % cols) == 0
+        x = padding
+        y += height + padding
 
   $canvas
     .mousemove(moveHandler)
