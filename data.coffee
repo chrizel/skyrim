@@ -612,4 +612,81 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Smithing'
+    perks: [
+      {
+        name: 'Steel Smithing'
+        desc: ['Can create Steel armor and weapons at forges, and improve them twice as much.']
+        pos: [0, 0]
+      }
+      {
+        name: 'Elven Smithing'
+        desc: ['Can create Elven armor and weapons at forges, and improve them twice as much.']
+        req: [30]
+        pos: [-55, -46]
+        deps: [0]
+      }
+      {
+        name: 'Arcane Blacksmith'
+        desc: ['You can improve magical weapons and armor.']
+        req: [60]
+        pos: [4, -45]
+        deps: [0]
+      }
+      {
+        name: 'Dwarven Smithing'
+        desc: ['Can create Dwarven armor and weapons at forges, and improve them twice as much.']
+        req: [30]
+        pos: [42, -33]
+        deps: [0]
+      }
+      {
+        name: 'Advanced Armors'
+        desc: ['Can create Scaled and Plate armor at forges, and improve them twice as much.']
+        req: [50]
+        pos: [-49, -57]
+        captionOffset: [0, -13]
+        deps: [1]
+      }
+      {
+        name: 'Glass Smithing'
+        desc: ['Can create Glass armor and weapons at forges, and improve them twice as much.']
+        req: [70]
+        pos: [-10, -70]
+        captionOffset: [0, -13]
+        deps: [4]
+      }
+      {
+        name: 'Orcish Smithing'
+        desc: ['Can create Orcish armor and weapons at forges, and improve them twice as much.']
+        req: [50]
+        pos: [81, -51]
+        deps: [3]
+      }
+      {
+        name: 'Ebony Smithing'
+        desc: ['Can create Ebony armor and weapons at forges, and improve them twice as much.']
+        req: [80]
+        pos: [114, -50]
+        captionOffset: [0, -13]
+        deps: [6]
+      }
+      {
+        name: 'Daedric Smithing'
+        desc: ['Can create Daedric armor and weapons at forges, and improve them twice as much.']
+        req: [90]
+        pos: [59, -66]
+        captionOffset: [0, -13]
+        deps: [7]
+      }
+      {
+        name: 'Dragon Armor'
+        desc: ['Can create Dragon armor at forges, and improve them twice as much.']
+        req: [100]
+        pos: [27, -71]
+        deps: [5, 8]
+      }
+    ]
+  }
 ]
