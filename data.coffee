@@ -1162,4 +1162,85 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Lockpicking'
+    perks: [
+      {
+        name: 'Novice Locks'
+        desc: ['Novice locks are much easier to pick.']
+        req: [0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Apprentice Locks'
+        desc: ['Apprentice locks are much easier to pick.']
+        req: [25]
+        pos: [31, -57]
+        deps: [0]
+      }
+      {
+        name: 'Quick Hands'
+        desc: ['Able to pick locks without being noticed.']
+        req: [40]
+        pos: [-7, -87]
+        deps: [1]
+      }
+      {
+        name: 'Wax Key'
+        desc: ["Automatically gives you a copy of a picked lock's key if it has one."]
+        req: [50]
+        pos: [-45, -106]
+        deps: [2]
+      }
+      {
+        name: 'Adept Locks'
+        desc: ['Adept locks are much easier to pick.']
+        req: [50]
+        pos: [55, -111]
+        deps: [1]
+      }
+      {
+        name: 'Golden Touch'
+        desc: ['Find more gold in chests.']
+        req: [60]
+        pos: [13, -124]
+        deps: [4]
+      }
+      {
+        name: 'Treasure Hunter'
+        desc: ['50% greater chance of finding special treasure.']
+        req: [70]
+        pos: [-15, -145]
+        deps: [5]
+      }
+      {
+        name: 'Expert Locks'
+        desc: ['Expert locks are much easier to pick.']
+        req: [75]
+        pos: [59, -143]
+        deps: [4]
+      }
+      {
+        name: 'Locksmith'
+        desc: ['Pick starts close to the lock opening position.']
+        req: [80]
+        pos: [22, -162]
+        deps: [7]
+      }
+      {
+        name: 'Unbreakable'
+        desc: ['Lockpicks never break.']
+        req: [100]
+        pos: [0, -177]
+        deps: [8]
+      }
+      {
+        name: 'Master Locks'
+        desc: ['Master locks are much easier to pick.']
+        req: [100]
+        pos: [67, -193]
+        deps: [7]
+      }
+    ]
+  }
 ]
