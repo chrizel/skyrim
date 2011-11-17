@@ -1304,4 +1304,72 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Speech'
+    perks: [
+      {
+        name: 'Haggling'
+        levels: 5
+        desc: ['Buying and selling prices are 10% better.', 'Buying and selling prices are 20% better.', 'Buying and selling prices are 30% better.', 'Buying and selling prices are 40% better.', 'Buying and selling prices are 50% better.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Allure'
+        desc: ['10% better prices with the opposite sex.']
+        req: [30]
+        pos: [14, -55]
+        deps: [0]
+      }
+      {
+        name: 'Bribery'
+        desc: ['Can bribe guards to ignore crimes.']
+        req: [30]
+        pos: [60, -56]
+        deps: [0]
+      }
+      {
+        name: 'Persuasion'
+        desc: ['Persuasion attempts are 30% easier.']
+        req: [50]
+        pos: [83, -111]
+        deps: [2]
+      }
+      {
+        name: 'Intimidation'
+        desc: ['Intimidation is twice as successful.']
+        req: [70]
+        pos: [95, -143]
+        deps: [3]
+      }
+      {
+        name: 'Merchant'
+        desc: ['Can sell any type of item to any kind of merchant.']
+        req: [50]
+        pos: [5, -111]
+        deps: [1]
+      }
+      {
+        name: 'Investor'
+        desc: ['Can invest 500 gold with a shopkeeper to increase his available gold permanently.']
+        req: [70]
+        pos: [-4, -142]
+        deps: [5]
+      }
+      {
+        name: 'Fence'
+        desc: ['Can barter stolen goods with any merchant you have invested in.']
+        req: [90]
+        pos: [-12, -169]
+        deps: [6]
+      }
+      {
+        name: 'Master Trader'
+        desc: ['Every merchant in the world gains 1000 gold for bartering.']
+        req: [100]
+        pos: [56, -177]
+        deps: [7]
+      }
+    ]
+  }
 ]
