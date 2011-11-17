@@ -542,4 +542,74 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Enchanting'
+    perks: [
+      {
+        name: 'Enchanter'
+        levels: 5
+        desc: ['New enchantments are 20% stronger.', 'New enchantments are 40% stronger.', 'New enchantments are 60% stronger.', 'New enchantments are 80% stronger.', 'New enchantments are 100% stronger.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Fire Enchanter'
+        desc: ['Fire enchantments on weapons and armor are 25% stronger.']
+        req: [30]
+        pos: [-24, -69]
+        deps: [0]
+      }
+      {
+        name: 'Insightful Enchanter'
+        desc: ['Skill enchantments on armor are 25% stronger.']
+        req: [50]
+        pos: [22, -69]
+        deps: [0]
+      }
+      {
+        name: 'Soul Squeezer'
+        desc: ['Soul gems provide extra magicka for recharging.']
+        req: [20]
+        pos: [75, -69]
+        deps: [0]
+      }
+      {
+        name: 'Soul Siphon'
+        desc: ["Death blows to creatures, but not people, trap 5% of the victim's soul, recharging the weapon."]
+        req: [40]
+        pos: [64, -141]
+        captionOffset: [0, -13]
+        deps: [3]
+      }
+      {
+        name: 'Frost Enchanter'
+        desc: ['Frost enchantments on weapons and armor are 25% stronger.']
+        req: [40]
+        pos: [-18, -108]
+        deps: [1]
+      }
+      {
+        name: 'Storm Enchanter'
+        desc: ['Shock enchantments on weapons and armor are 25% stronger.']
+        req: [50]
+        pos: [-1, -139]
+        deps: [5]
+      }
+      {
+        name: 'Corpus Enchanter'
+        desc: ['Health, magicka, and stamina enchantments on armor are 25% stronger.']
+        req: [70]
+        pos: [43, -108]
+        deps: [2]
+      }
+      {
+        name: 'Extra Effect'
+        desc: ['Can put two enchantments on the same item.']
+        req: [100]
+        pos: [37, -166]
+        captionOffset: [0, -13]
+        deps: [6, 7]
+      }
+    ]
+  }
 ]
