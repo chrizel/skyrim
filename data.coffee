@@ -69,6 +69,212 @@ window.perkTrees = [
     ]
   }
   {
+    name: 'Illusion'
+    perks: [
+      {
+        name: 'Novice Illusion'
+        desc: ['Cast Novice level Illusion spells for half magicka.']
+        pos: [0, 0]
+      }
+      {
+        name: 'Illusion Dual Casting'
+        desc: ['Dual casting an Illusion spell overcharges the effects into an even more powerful version.']
+        req: [20]
+        pos: [-87, -3]
+        deps: [0]
+      }
+      {
+        name: 'Apprentice Illusion'
+        desc: ['Cast Apprentice level Illusion spells for half magicka.']
+        req: [25]
+        pos: [-59, -56]
+        deps: [0]
+      }
+      {
+        name: 'Hypnotic Gaze'
+        desc: ['Calm spells now work on higher level opponents. Cumulative with Kindred Mage and Animage.']
+        req: [30]
+        pos: [-8, -72]
+        deps: [0]
+      }
+      {
+        name: 'Animage'
+        desc: ['Illusion spells now work on higher level animals.']
+        req: [20]
+        pos: [63, -40]
+        deps: [0]
+      }
+      {
+        name: 'Adept Illusion'
+        desc: ['Cast Adept level Illusion spells for half magicka.']
+        req: [50]
+        pos: [-57, -100]
+        deps: [2]
+      }
+      {
+        name: 'Expert Illusion'
+        desc: ['Cast Expert level Illusion spells for half magicka.']
+        req: [75]
+        pos: [-60, -123]
+        deps: [5]
+      }
+      {
+        name: 'Master Illusion'
+        desc: ['Cast Master level Illusion spells for half magicka.']
+        req: [100]
+        pos: [-32, -153]
+        deps: [6]
+      }
+      {
+        name: 'Aspect of Terror'
+        desc: ['Fear spells work on higher level opponents. Cumulative with Kindred Mage and Animage.']
+        req: [50]
+        pos: [-27, -112]
+        deps: [3]
+      }
+      {
+        name: 'Rage'
+        desc: ['Frenzy spells work on higher level opponents. Cumulative with Kindred Mage and Animage.']
+        req: [70]
+        pos: [-12, -122]
+        deps: [8]
+      }
+      {
+        name: 'Kindred Mage'
+        desc: ['All Illusion spells work on higher level people.']
+        req: [40]
+        pos: [26, -86]
+        deps: [4]
+      }
+      {
+        name: 'Quiet Casting'
+        desc: ['All spells you cast from any school of magic are silent to others.']
+        req: [50]
+        pos: [23, -124]
+        deps: [10]
+      }
+      {
+        name: 'Master of the Mind'
+        desc: ['Illusion spells work on undead, daedra and automatons.']
+        req: [90]
+        pos: [7, -154]
+        deps: [9, 11]
+      }
+    ]
+  }
+  {
+    name: 'Conjuration'
+    perks: [
+      {
+        name: 'Novice Conjuration'
+        desc: ['Cast Novice level Conjuration spells for half magicka.']
+        pos: [0, 0]
+      }
+      {
+        name: 'Summoner'
+        levels: 2
+        desc: ['Can summon atronachs or raise undead twice as far away.', 'Can summon atronachs or raise undead three times as far away.']
+        req: [30, 30]
+        pos: [-72, -70]
+        deps: [0]
+      }
+      {
+        name: 'Conjuration Dual Casting'
+        desc: ['Dual casting a Conjuration spell overcharges the spell, allowing it to last longer.']
+        req: [20]
+        pos: [-30, -54]
+        deps: [0]
+      }
+      {
+        name: 'Necromancy'
+        desc: ['Greater duration for reanimated undead.']
+        req: [40]
+        pos: [-44, -133]
+        deps: [0]
+      }
+      {
+        name: 'Mystic Binding'
+        desc: ['Bound weapons do more damage.']
+        req: [20]
+        pos: [9, -55]
+        deps: [0]
+      }
+      {
+        name: 'Apprentice Conjuration'
+        desc: ['Cast Apprentice level Conjuration spells for half magicka.']
+        req: [25]
+        pos: [45, -70]
+        deps: [0]
+      }
+      {
+        name: 'Atromancy'
+        desc: ['Double duration for conjured Atronachs.']
+        req: [40]
+        pos: [-80, -134]
+        deps: [1]
+      }
+      {
+        name: 'Elemental Potency'
+        desc: ['Conjured Atronachs are 50% more powerful.']
+        req: [80]
+        pos: [-75, -161]
+        deps: [6]
+      }
+      {
+        name: 'Dark Souls'
+        desc: ['Reanimated undead have 100 points more health.']
+        req: [70]
+        pos: [-45, -162]
+        deps: [3]
+      }
+      {
+        name: 'Twin Souls'
+        desc: ['You can have two atronachs or reanimated zombies.']
+        req: [100]
+        pos: [-39, -175]
+        captionOffset: [0, -13]
+        deps: [7, 8]
+      }
+      {
+        name: 'Soul Stealer'
+        desc: ['Bound weapons cast Soul Trap on targets.']
+        req: [30]
+        pos: [15, -123]
+        deps: [4]
+      }
+      {
+        name: 'Oblivion Binding'
+        desc: ['Bound weapons will banish summoned creatures and turn raised ones.']
+        req: [50]
+        pos: [14, -143]
+        captionOffset: [0, -13]
+        deps: [10]
+      }
+      {
+        name: 'Adept Conjuration'
+        desc: ['Cast Adept level Conjuration spells for half magicka.']
+        req: [50]
+        pos: [52, -109]
+        deps: [5]
+      }
+      {
+        name: 'Expert Conjuration'
+        desc: ['Cast Expert level Conjuration spells for half magicka.']
+        req: [75]
+        pos: [45, -141]
+        deps: [12]
+      }
+      {
+        name: 'Master Conjuration'
+        desc: ['Cast Master level Conjuration spells for half magicka.']
+        req: [100]
+        pos: [19, -175]
+        captionOffset: [0, -13]
+        deps: [13]
+      }
+    ]
+  }
+  {
     name: 'Destruction'
     perks: [
       {
