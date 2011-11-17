@@ -689,4 +689,65 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Heavy Armor'
+    perks: [
+      {
+        name: 'Juggernaut'
+        levels: 5
+        desc: ['Increases armor rating for Heavy Armor by 20%.', 'Increases armor rating for Heavy Armor by 40%.', 'Increases armor rating for Heavy Armor by 60%.', 'Increases armor rating for Heavy Armor by 80%.', 'Increases armor rating for Heavy Armor by 100%.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Fists of Steel'
+        desc: ['Unarmed attacks with Heavy Armor gauntlets do their armor rating in extra damage.']
+        req: [30]
+        pos: [-55, -56]
+        deps: [0]
+      }
+      {
+        name: 'Cushioned'
+        desc: ['Half damage from falling if wearing all Heavy Armor: head, chest, hands, feet.']
+        req: [50]
+        pos: [-85, -111]
+        deps: [1]
+      }
+      {
+        name: 'Conditioning'
+        desc: ["Heavy Armor weighs nothing and doesn't slow you down when worn."]
+        req: [70]
+        pos: [-81, -170]
+        deps: [2]
+      }
+      {
+        name: 'Well Fitted'
+        desc: ['25% Armor bonus if wearing all Heavy Armor: head, chest, hands, feet.']
+        req: [30]
+        pos: [51, -56]
+        deps: [0]
+      }
+      {
+        name: 'Tower of Strength'
+        desc: ['50% less stagger when wearing only Heavy Armor.']
+        req: [50]
+        pos: [70, -111]
+        deps: [4]
+      }
+      {
+        name: 'Matching Set'
+        desc: ['Additional 25% Armor bonus if wearing a matched set of Heavy Armor.']
+        req: [70]
+        pos: [82, -143]
+        deps: [5]
+      }
+      {
+        name: 'Reflect Blows'
+        desc: ['10% chance to reflect melee damage back to the enemy while wearing all Heavy Armor: head, chest, hands, feet.']
+        req: [100]
+        pos: [72, -198]
+        deps: [6]
+      }
+    ]
+  }
 ]
