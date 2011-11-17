@@ -1243,4 +1243,65 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Pickpocket'
+    perks: [
+      {
+        name: 'Light Fingers'
+        levels: 5
+        desc: ['Pickpocketing bonus of 20%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 40%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 60%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 80%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 100%. Item weight and value reduce pickpocketing odds.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Night Thief'
+        desc: ['+25% chance to pickpocket if the target is asleep.']
+        req: [30]
+        pos: [25, -50]
+        deps: [0]
+      }
+      {
+        name: 'Poisoned'
+        desc: ['Silently harm enemies by placing poisons in their pockets.']
+        req: [40]
+        pos: [13, -106]
+        deps: [1]
+      }
+      {
+        name: 'Cutpurse'
+        desc: ['Pickpocketing gold is 50% easier.']
+        req: [40]
+        pos: [44, -107]
+        deps: [1]
+      }
+      {
+        name: 'Extra Pockets'
+        desc: ['Carrying capacity is increased by 100.']
+        req: [50]
+        pos: [72, -105]
+        deps: [1]
+      }
+      {
+        name: 'Keymaster'
+        desc: ['Pickpocketing keys almost always works.']
+        req: [60]
+        pos: [21, -128]
+        deps: [3]
+      }
+      {
+        name: 'Misdirection'
+        desc: ['Can pickpocket equipped weapons.']
+        req: [70]
+        pos: [55, -157]
+        deps: [3]
+      }
+      {
+        name: 'Perfect Touch'
+        desc: ['Can pickpocket equipped items.']
+        req: [100]
+        pos: [72, -162]
+        deps: [6]
+      }
+    ]
+  }
 ]
