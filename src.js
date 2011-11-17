@@ -1,6 +1,6 @@
-var transX = 100;
-var transY = 220;
-var zoom = 1.0;
+var transX = 500;
+var transY = 620;
+var zoom = 3.0;
 var perkCircleRadius = 3;
 var hoveredPerk = null;
 
@@ -106,6 +106,91 @@ var perkData = [
             req: [100],
             pos: [51, -186],
             deps: [12]
+        }
+    ]},
+    {name: 'Restoration', perks: [
+        {
+            name: 'Novice Restoration',
+            desc: ['Cast Novice level Restoration spells for half magicka.'],
+            pos: [0, 0]
+        },
+        {
+            name: 'Respite',
+            desc: ['Healing spells also restore Stamina.'],
+            req: [40],
+            pos: [-117, -70],
+            deps: [0]
+        },
+        {
+            name: 'Regeneration',
+            desc: ['Healing spells cure 50% more.'],
+            req: [20],
+            pos: [-53, -58],
+            deps: [0]
+        },
+        {
+            name: 'Necromage',
+            desc: ['All spells are more effective against undead.'],
+            req: [70],
+            pos: [-103, -124],
+            deps: [2]
+        },
+        {
+            name: 'Ward Absorb',
+            desc: ['Wards recharge your magicka when hit with spells.'],
+            req: [60],
+            pos: [-46, -123],
+            deps: [0]
+        },
+        {
+            name: 'Apprentice Restoration',
+            desc: ['Cast Apprentice level Restoration spells for half magicka.'],
+            req: [25],
+            pos: [10, -55],
+            deps: [0]
+        },
+        {
+            name: 'Adept Restoration',
+            desc: ['Cast Adept level Restoration spells for half magicka.'],
+            req: [50],
+            pos: [-7, -113],
+            deps: [5]
+        },
+        {
+            name: 'Expert Restoration',
+            desc: ['Cast Expert level Restoration spells for half magicka.'],
+            req: [75],
+            pos: [-3, -161],
+            deps: [6]
+        },
+        {
+            name: 'Master Restoration',
+            desc: ['Cast Master level Restoration spells for half magicka.'],
+            req: [100],
+            pos: [-29, -177],
+            deps: [7]
+        },
+        {
+            name: 'Recovery',
+            levels: 2,
+            desc: ['Magicka regenerates 25% faster.', 'Magicka regenerates 50% faster.'],
+            req: [30, 60],
+            pos: [79, -71],
+            deps: [0]
+        },
+        {
+            name: 'Avoid Death',
+            desc: ['Once a day, heals 250 points automatically if you fall below 10% health.'],
+            req: [90],
+            pos: [100, -110],
+            deps: [9]
+        },
+        {
+            name: 'Restoration Dual Casting',
+            desc: ['Dual casting a Restoration spell overcharges the effects into an even more powerful version.'],
+            req: [20],
+            pos: [57, -40],
+            deps: [0]
         }
     ]}
 ];
@@ -284,11 +369,11 @@ function redraw() {
     }
     */
 
-    drawPerkTree(ctx, perkData[0]);
+    drawPerkTree(ctx, perkData[1]);
 }
 
 function perkAtPosition(x, y) {
-    var perkArray = perkData[0].perks;
+    var perkArray = perkData[1].perks;
 
     var perkSize = perkCircleRadius * zoom;
     for (var i = 0; i < perkArray.length; i++) {
