@@ -1094,4 +1094,72 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Sneak'
+    perks: [
+      {
+        name: 'Stealth'
+        levels: 5
+        desc: ['You are 20% harder to detect when sneaking.', 'You are 40% harder to detect when sneaking.', 'You are 60% harder to detect when sneaking.', 'You are 80% harder to detect when sneaking.', 'You are 100% harder to detect when sneaking.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Backstab'
+        desc: ['Sneak attacks with one-handed weapons now do six times damage.']
+        req: [30]
+        pos: [43, -55]
+        deps: [0]
+      }
+      {
+        name: 'Deadly Aim'
+        desc: ['Sneak attacks with bows now do three times damage.']
+        req: [40]
+        pos: [48, -112]
+        deps: [1]
+      }
+      {
+        name: "Assassin's Blade"
+        desc: ['Sneak attacks with daggers now do a total of fifteen times normal damage.']
+        req: [50]
+        pos: [27, -121]
+        deps: [2]
+      }
+      {
+        name: 'Muffled Movement'
+        desc: ['Noise from armor is reduced 50%.']
+        req: [30]
+        pos: [-54, -56]
+        deps: [0]
+      }
+      {
+        name: 'Light Foot'
+        desc: ["You won't trigger pressure plates."]
+        req: [40]
+        pos: [-32, -113]
+        deps: [4]
+      }
+      {
+        name: 'Silent Roll'
+        desc: ['Sprinting while sneaking executes a silent forward roll.']
+        req: [50]
+        pos: [-9, -134]
+        deps: [5]
+      }
+      {
+        name: 'Silence'
+        desc: ['Walking and running does not affect detection.']
+        req: [70]
+        pos: [21, -162]
+        deps: [6]
+      }
+      {
+        name: 'Shadow Warrior'
+        desc: ['Crouching stops combat for a moment and forces distant opponents to search for a target.']
+        req: [100]
+        pos: [68, -176]
+        deps: [7]
+      }
+    ]
+  }
 ]
