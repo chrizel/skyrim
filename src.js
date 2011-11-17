@@ -1,6 +1,6 @@
-var transX = 400;
-var transY = 800;
-var zoom = 4;
+var transX = 100;
+var transY = 220;
+var zoom = 1.0;
 var perkCircleRadius = 3;
 var hoveredPerk = null;
 
@@ -10,87 +10,100 @@ var perkData = [
     {name: 'Destruction', perks: [
         {
             name: 'Novice Destruction', 
-            desc: 'Cast Novice level Destruction spells for half magicka.',
+            desc: ['Cast Novice level Destruction spells for half magicka.'],
             pos: [0, 0]
         },
         {
             name: 'Destruction Dual Casting',
-            desc: 'Dual casting a Destruction spell overcharges the effects into an even more powerful version.',
+            desc: ['Dual casting a Destruction spell overcharges the effects into an even more powerful version.'],
+            req: [20],
             pos: [64, -21],
             deps: [0]
         },
         {
             name: 'Impact',
-            desc: 'Most destruction spells will stagger an opponent when dual cast.',
+            desc: ['Most destruction spells will stagger an opponent when dual cast.'],
+            req: [40],
             pos: [79, -56],
             deps: [1]
         },
         {
             name: 'Augmented Flames',
             levels: 2,
-            desc: 'Fire spells do 25% more damage.',
+            desc: ['Fire spells do 25% more damage.', 'Fire spells do 50% more damage.'],
+            req: [30, 60],
             pos: [-44, -72],
             deps: [0]
         },
         {
             name: 'Intense Flames',
-            desc: 'Fire damage causes targets to flee if their health is low.',
+            desc: ['Fire damage causes targets to flee if their health is low.'],
+            req: [50],
             pos: [-50, -111],
             deps: [3]
         },
         {
             name: 'Augmented Frost',
             levels: 2,
-            desc: 'Frost spells do 25% more damage.',
+            desc: ['Frost spells do 25% more damage.', 'Frost spells do 50% more damage.'],
+            req: [30, 60],
             pos: [-12, -85],
             deps: [0]
         },
         {
             name: 'Deep Freeze',
-            desc: 'Frost damage paralyzes targets if their health is low.',
+            desc: ['Frost damage paralyzes targets if their health is low.'],
+            req: [60],
             pos: [-16, -133],
             deps: [5]
         },
         {
             name: 'Augmented Shock',
             levels: 2,
-            desc: 'Shock spells do 25% more damage.',
+            desc: ['Shock spells do 25% more damage.', 'Shock spells do 50% more damage.'],
+            req: [30, 60],
             pos: [13, -86],
             deps: [0]
         },
         {
             name: 'Disintegrate',
-            desc: 'Shock damage disintegrates targets if their health is low.',
+            desc: ['Shock damage disintegrates targets if their health is low.'],
+            req: [70],
             pos: [13, -143],
             deps: [7]
         },
         {
             name: 'Apprentice Destruction',
-            desc: 'Cast Apprentice level Destruction spells for half magicka.',
+            desc: ['Cast Apprentice level Destruction spells for half magicka.'],
+            req: [25],
             pos: [42, -55],
             deps: [0]
         },
         {
             name: 'Rune Master',
-            desc: 'Can place runes five times farther away.',
+            desc: ['Can place runes five times farther away.'],
+            req: [40],
             pos: [67, -87],
             deps: [9]
         },
         {
             name: 'Adept Destruction',
-            desc: 'Cast Adept level Destruction spells for half magicka.',
+            desc: ['Cast Adept level Destruction spells for half magicka.'],
+            req: [50],
             pos: [38, -110],
             deps: [9]
         },
         {
             name: 'Expert Destruction',
-            desc: 'Cast Expert level Destruction spells for half magicka.',
+            desc: ['Cast Expert level Destruction spells for half magicka.'],
+            req: [75],
             pos: [52, -141],
             deps: [11]
         },
         {
             name: 'Master Destruction',
-            desc: 'Cast Master level Destruction spells for half magicka.',
+            desc: ['Cast Master level Destruction spells for half magicka.'],
+            req: [100],
             pos: [51, -186],
             deps: [12]
         }
@@ -182,10 +195,13 @@ function changePerkLevel(perk, inc) {
     activePerkLevels[perkId(perk)] = newLevel;
 }
 
-function drawPerkTree(ctx, perkArray) {
+function drawPerkTree(ctx, perkTree) {
     ctx.save();
     ctx.translate(transX, transY);
     ctx.scale(zoom, zoom);
+
+
+    var perkArray = perkTree.perks;
 
     // Draw dependency lines...
     for (var i = 0; i < perkArray.length; i++) {
@@ -242,6 +258,12 @@ function drawPerkTree(ctx, perkArray) {
         ctx.restore();
     }
 
+
+    ctx.fillStyle = 'rgb(200,200,200)';
+    ctx.font = '12px Arial black';
+    var w = ctx.measureText(perkTree.name).width;
+    ctx.fillText(perkTree.name, -w/2, 30, 0);
+
     ctx.restore();
 }
 
@@ -262,7 +284,7 @@ function redraw() {
     }
     */
 
-    drawPerkTree(ctx, perkData[0].perks);
+    drawPerkTree(ctx, perkData[0]);
 }
 
 function perkAtPosition(x, y) {
