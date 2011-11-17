@@ -1,12 +1,14 @@
+var $canvas = null;
 var transX = 500;
-var transY = 620;
+var transY = 650;
 var zoom = 3.0;
 var perkCircleRadius = 3;
 var hoveredPerk = null;
+var activePerkTree = null;
 
 var activePerkLevels = {};
 
-var perkData = [
+var perkTrees = [
     {name: 'Destruction', perks: [
         {
             name: 'Novice Destruction', 
@@ -63,6 +65,7 @@ var perkData = [
             desc: ['Shock spells do 25% more damage.', 'Shock spells do 50% more damage.'],
             req: [30, 60],
             pos: [13, -86],
+            captionOffset: [0, -13],
             deps: [0]
         },
         {
@@ -267,25 +270,21 @@ var perkData = [
     ]}
 ];
 
-function $(id) {
-    return document.getElementById(id);
-}
-
 function perkId(perk) {
-    for (var i = 0; i < perkData.length; i++)
-        for (var j = 0; j < perkData[i].perks.length; j++)
-            if (perkData[i].perks[j] == perk)
+    for (var i = 0; i < perkTrees.length; i++)
+        for (var j = 0; j < perkTrees[i].perks.length; j++)
+            if (perkTrees[i].perks[j] == perk)
                 return 'perk' + ((i * 100) + j);
     return '';
 }
 
 function forEachParentOfPerk(perk, func) {
     if (perk && perk.deps)
-        for (var i = 0; i < perkData.length; i++)
-            for (var j = 0; j < perkData[i].perks.length; j++)
-                if (perkData[i].perks[j] == perk) {
+        for (var i = 0; i < perkTrees.length; i++)
+            for (var j = 0; j < perkTrees[i].perks.length; j++)
+                if (perkTrees[i].perks[j] == perk) {
                     for (var k = 0; k < perk.deps.length; k++)
-                        func(perkData[i].perks[perk.deps[k]]);
+                        func(perkTrees[i].perks[perk.deps[k]]);
                     return;
                 }
 }
@@ -299,11 +298,11 @@ function isPerkChildOfParentWithIndex(perk, parentIndex) {
 }
 
 function forEachChildOfPerk(perk, func) {
-    for (var i = 0; i < perkData.length; i++)
-        for (var j = 0; j < perkData[i].perks.length; j++)
-            if (perkData[i].perks[j] == perk) {
-                for (var k = 0; k < perkData[i].perks.length; k++) {
-                    var p = perkData[i].perks[k];
+    for (var i = 0; i < perkTrees.length; i++)
+        for (var j = 0; j < perkTrees[i].perks.length; j++)
+            if (perkTrees[i].perks[j] == perk) {
+                for (var k = 0; k < perkTrees[i].perks.length; k++) {
+                    var p = perkTrees[i].perks[k];
                     if (isPerkChildOfParentWithIndex(p, j)) {
                         forEachChildOfPerk(p, func);
                         func(p);
@@ -352,11 +351,9 @@ function changePerkLevel(perk, inc) {
     activePerkLevels[perkId(perk)] = newLevel;
 }
 
-function drawPerkTree(ctx, perkTree) {
+function drawPerkTree(ctx, perkTree, captions, scale) {
     ctx.save();
-    ctx.translate(transX, transY);
-    ctx.scale(zoom, zoom);
-
+    ctx.scale(scale, scale);
 
     var perkArray = perkTree.perks;
 
@@ -379,6 +376,7 @@ function drawPerkTree(ctx, perkTree) {
     }
 
     // Draw perks ...
+    var captionOffset;
     for (var i = 0; i < perkArray.length; i++) {
         var perk = perkArray[i];
         var level = getPerkLevel(perk);
@@ -392,32 +390,36 @@ function drawPerkTree(ctx, perkTree) {
         ctx.arc(perk.pos[0], perk.pos[1], perkCircleRadius * (level > 0 ? 1 : 0.5), 0, Math.PI*2, true);
         ctx.fill();
 
-        ctx.save();
+        if (captions) {
+            ctx.save();
 
-        var perkName = getPerkDisplayName(perk);
+            var perkName = getPerkDisplayName(perk);
 
-        ctx.font = "4px Arial";
-        var w = ctx.measureText(perkName).width;
-        ctx.translate(perk.pos[0], perk.pos[1]+10);
-        //ctx.rotate(Math.PI/4-0.2);
-        //ctx.rotate(0.2);
-        ctx.translate(-w/2, 0);
+            ctx.font = "bold 4px Arial";
+            var w = ctx.measureText(perkName).width;
 
-        ctx.fillStyle = level > 0 ? 'rgba(255, 255, 255, 1.0)' : 'rgba(200, 200, 200, 0.5)';
+            captionOffset = perk.captionOffset || [0, 0];
 
-        ctx.shadowColor = 'rgb(0,0,0)';
-        ctx.shadowOffsetX = 2;
-        ctx.shadowOffsetY = 2;
-        ctx.shadowBlur = 2;
+            ctx.translate(perk.pos[0]+captionOffset[0], perk.pos[1]+8+captionOffset[1]);
+            //ctx.rotate(Math.PI/4-0.2);
+            //ctx.rotate(0.2);
+            ctx.translate(-w/2, 0);
+
+            ctx.fillStyle = level > 0 ? 'rgba(255, 255, 255, 1.0)' : 'rgba(200, 200, 200, 0.5)';
+
+            ctx.shadowColor = 'rgb(0,0,0)';
+            ctx.shadowOffsetX = 2;
+            ctx.shadowOffsetY = 2;
+            ctx.shadowBlur = 2;
 
 
-        ctx.fillText(perkName, 0, 0, 0);
-        ctx.restore();
+            ctx.fillText(perkName, 0, 0, 0);
+            ctx.restore();
+        }
     }
 
-
     ctx.fillStyle = 'rgb(200,200,200)';
-    ctx.font = '12px Arial black';
+    ctx.font = 'bold 12px Arial';
     var w = ctx.measureText(perkTree.name).width;
     ctx.fillText(perkTree.name, -w/2, 30, 0);
 
@@ -425,27 +427,36 @@ function drawPerkTree(ctx, perkTree) {
 }
 
 function redraw() {
-    var canvas = $('canvas');
-    if (!canvas.getContext)
-        return;
+    if (!$canvas) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    var ctx = canvas.getContext("2d");
+    var ctx = $canvas[0].getContext("2d");
+    ctx.save();
     ctx.fillStyle = 'rgb(0,0,0)';
-    ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    ctx.fillRect(0, 0, $canvas.width(), $canvas.height());
 
-    /*
-    for (var i = 0; i < 6; i++) {
+    if (activePerkTree) {
+        ctx.translate(transX, transY);
+        drawPerkTree(ctx, activePerkTree, true, zoom);
+    } else {
+        ctx.translate(100, 200);
+
+        drawPerkTree(ctx, perkTrees[0], false, 0.8);
+
+        ctx.translate(200, 0);
+        drawPerkTree(ctx, perkTrees[1], false, 0.8);
+
+        ctx.translate(200, 0);
+        drawPerkTree(ctx, perkTrees[2], false, 0.8);
     }
-    */
 
-    drawPerkTree(ctx, perkData[2]);
+    ctx.restore();
 }
 
 function perkAtPosition(x, y) {
-    var perkArray = perkData[2].perks;
+    if (!activePerkTree)
+        return null;
+
+    var perkArray = activePerkTree.perks;
 
     var perkSize = perkCircleRadius * zoom;
     for (var i = 0; i < perkArray.length; i++) {
@@ -465,37 +476,67 @@ function perkAtPosition(x, y) {
 
 function downHandler(e) {
     e.preventDefault();
-    var perk = perkAtPosition(e.clientX, e.clientY);
-    if (perk) {
-        changePerkLevel(perk, e.button == 2 ? -1 : 1);
+
+    var off = $canvas.offset();
+    var x = e.pageX - off.left;
+    var y = e.pageY - off.top;
+
+    if (activePerkTree) {
+        var perk = perkAtPosition(x, y);
+        if (perk) {
+            changePerkLevel(perk, e.button == 2 ? -1 : 1);
+            redraw();
+        }
+    } else {
+        var col = Math.floor(x / 200);
+        if (col >= perkTrees.length) {
+            alert('TODO!');
+            return;
+        }
+
+        activePerkTree = perkTrees[col];
         redraw();
     }
 }
 
 function moveHandler(e) {
     e.preventDefault();
-    var perk = perkAtPosition(e.clientX, e.clientY);
-    if (perk) {
-        document.body.style.cursor = 'pointer';
-        hoveredPerk = perk;
-        redraw();
-    } else if (hoveredPerk) {
-        document.body.style.cursor = 'default';
-        hoveredPerk = null;
-        redraw();
+
+    var off = $canvas.offset();
+    var x = e.pageX - off.left;
+    var y = e.pageY - off.top;
+
+    if (activePerkTree) {
+        var perk = perkAtPosition(x, y);
+        if (perk) {
+            document.body.style.cursor = 'pointer';
+            hoveredPerk = perk;
+            redraw();
+        } else if (hoveredPerk) {
+            document.body.style.cursor = 'default';
+            hoveredPerk = null;
+            redraw();
+        }
+    } else {
+        //TODO
     }
 }
 
-function init() {
-    var canvas = $('canvas');
-    if (!canvas.getContext)
-        return;
+function showAll() {
+    activePerkTree = null;
+    redraw();
+}
 
-    canvas.onmousemove = moveHandler;
-    canvas.onmousedown = downHandler;
-    canvas.oncontextmenu = function(e) { e.preventDefault(); };
-    window.onresize = function() {
-        redraw();
+function init() {
+    $canvas = $('#canvas');
+    if (!$canvas[0].getContext) {
+        $canvas = null;
+        return;
     }
+
+    $canvas
+        .mousemove(moveHandler)
+        .mousedown(downHandler)
+        .contextmenu(function(e) { e.originalEvent.preventDefault(); });
     redraw();
 }
