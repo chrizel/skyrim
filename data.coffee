@@ -895,4 +895,87 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'One-Handed'
+    perks: [
+      {
+        name: 'Armsman'
+        levels: 5
+        desc: ['One-Handed weapons do 20% more damage.', 'One-Handed weapons do 40% more damage.', 'One-Handed weapons do 60% more damage.', 'One-Handed weapons do 80% more damage.', 'One-Handed weapons do 100% more damage.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Hack and Slash'
+        levels: 3
+        desc: ['Attacks with war axes cause extra bleeding damage.', 'Attacks with war axes cause extra bleeding damage.', 'Attacks with war axes cause extra bleeding damage.']
+        req: [30, 30, 30]
+        pos: [-45, -86]
+        deps: [0]
+      }
+      {
+        name: 'Fighting Stance'
+        desc: ['Power attacks with one-handed-weapons cost 25% less stamina.']
+        req: [20]
+        pos: [0, -56]
+        deps: [0]
+      }
+      {
+        name: 'Bone Breaker'
+        levels: 3
+        desc: ['Attacks with maces ignore 25% of armor.', 'Attacks with maces ignore 50% of armor.', 'Attacks with maces ignore 75% of armor.']
+        req: [30]
+        pos: [23, -86]
+        deps: [0]
+      }
+      {
+        name: 'Bladesman'
+        levels: 3
+        desc: ['Attacks with swords have a 10% chance of doing critical damage.', 'Attacks with swords have a 15% chance of doing critical damage.', 'Attacks with swords have a 20% chance of doing critical damage.']
+        req: [30]
+        pos: [46, -86]
+        captionOffset: [0, -13]
+        deps: [0]
+      }
+      {
+        name: 'Dual Flurry'
+        levels: 2
+        desc: ['Dual wielding attacks are 20% faster.', 'Dual wielding attacks are 35% faster.']
+        req: [30]
+        pos: [88, -40]
+        deps: [0]
+      }
+      {
+        name: 'Dual Savagery'
+        desc: ['Dual wielding power attacks do 50% bonus damage.']
+        req: [70]
+        pos: [62, -163]
+        captionOffset: [0, -13]
+        deps: [5]
+      }
+      {
+        name: 'Savage Strike'
+        desc: ['Standing power attacks do 25% bonus damage with a chance to decapitate your enemies.']
+        req: [50]
+        pos: [-20, -122]
+        deps: [2]
+      }
+      {
+        name: 'Critical Charge'
+        desc: ['Can do a one-handed power attack while sprinting that does double critical damage.']
+        req: [50]
+        pos: [14, -122]
+        captionOffset: [0, -13]
+        deps: [2]
+      }
+      {
+        name: 'Paralyzing Strike'
+        desc: ['Backwards power attack has a 25% chance to paralyze the target.']
+        req: [100]
+        pos: [2, -216]
+        captionOffset: [0, -13]
+        deps: [7, 8]
+      }
+    ]
+  }
 ]
