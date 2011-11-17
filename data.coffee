@@ -750,4 +750,75 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Block'
+    perks: [
+      {
+        name: 'Shield Wall'
+        levels: 5
+        desc: ['Blocking is 20% more effective.', 'Blocking is 40% more effective.', 'Blocking is 60% more effective.', 'Blocking is 80% more effective.', 'Blocking is 100% more effective.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Deflect Arrows'
+        desc: ['Arrows that hit the shield do no damage.']
+        req: [30]
+        pos: [-103, -53]
+        deps: [0]
+      }
+      {
+        name: 'Quick Reflexes'
+        desc: ["Time slows down if you are blocking during an enemy's power attack."]
+        req: [30]
+        pos: [-24, -70]
+        captionOffset: [0, -13]
+        deps: [0]
+      }
+      {
+        name: 'Power Bash'
+        desc: ['Able to do a power bash.']
+        req: [30]
+        pos: [83, -54]
+        deps: [0]
+      }
+      {
+        name: 'Elemental Protection'
+        desc: ['Blocking with a shield reduces incoming fire, frost, and shock damage by 50%.']
+        req: [50]
+        pos: [-72, -131]
+        deps: [1]
+      }
+      {
+        name: 'Block Runner'
+        desc: ['Able to move faster with a shield raised.']
+        req: [70]
+        pos: [-43, -149]
+        captionOffset: [0, -13]
+        deps: [4]
+      }
+      {
+        name: 'Deadly Bash'
+        desc: ['Bashing does five times more damage.']
+        req: [50]
+        pos: [79, -109]
+        deps: [3]
+      }
+      {
+        name: 'Disarming Bash'
+        desc: ['Chance to disarm when power bashing.']
+        req: [70]
+        pos: [60, -151]
+        deps: [6]
+      }
+      {
+        name: 'Shield Charge'
+        desc: ['Sprinting with a shield raised knocks down most targets.']
+        req: [100]
+        pos: [1, -167]
+        captionOffset: [0, -13]
+        deps: [7]
+      }
+    ]
+  }
 ]
