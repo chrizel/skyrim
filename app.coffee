@@ -106,14 +106,15 @@ changePerkLevel = (perk, inc) ->
 class PerkTreeView
   constructor: (@model, @frame, @scale) ->
 
-  perkTreeSize: ->
+  perkTreeFrame: ->
     minx = maxx = miny = maxy = 0
     for perk in @model.perks
       minx = perk.pos[0] if perk.pos[0] < minx
       maxx = perk.pos[0] if perk.pos[0] > maxx
       miny = perk.pos[1] if perk.pos[1] < miny
       maxy = perk.pos[1] if perk.pos[1] > maxy
-    return [Math.abs(minx-maxx)*@scale, Math.abs(miny-maxy)*@scale]
+    return [Math.abs(minx)*@scale, Math.abs(miny)*@scale,
+            Math.abs(minx-maxx)*@scale, Math.abs(miny-maxy)*@scale]
 
   hitFrame: (x, y) ->
     (x >= @frame[0]) &&
@@ -139,9 +140,9 @@ class PerkTreeView
     return result
 
   root: ->
-    perkTreeSize = @perkTreeSize()
-    x = @frame[0] + Math.abs(@frame[2] - perkTreeSize[0])/2 + perkTreeSize[0]/2
-    y = @frame[1] + @frame[3]/2 + perkTreeSize[1]/2
+    perkTreeFrame = @perkTreeFrame()
+    x = @frame[0] + @frame[2]/2 - perkTreeFrame[2]/2 + perkTreeFrame[0]
+    y = @frame[1] + @frame[3]/2 + perkTreeFrame[3]/2
     return [x, y]
 
   draw: (ctx, captions, title) ->
@@ -310,14 +311,13 @@ $ ->
   width = 100
   height = 127
   activePerkTreeView = new PerkTreeView(perkTrees[0], [320, padding, 670, 787], 2.5)
-  for foo in [1, 2, 3, 4, 5, 6]
-    for perkTree in perkTrees
-      perkTreeViews.push new PerkTreeView(perkTree, [x, y, width, height], 0.4)
-      i++
-      x += width + padding
-      if (i % cols) == 0
-        x = padding
-        y += height + padding
+  for perkTree in perkTrees
+    perkTreeViews.push new PerkTreeView(perkTree, [x, y, width, height], 0.4)
+    i++
+    x += width + padding
+    if (i % cols) == 0
+      x = padding
+      y += height + padding
 
   $canvas
     .mousemove(moveHandler)

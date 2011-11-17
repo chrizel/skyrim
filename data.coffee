@@ -1,5 +1,74 @@
 window.perkTrees = [
   {
+    name: 'Alchemy'
+    perks: [
+      {
+        name: 'Alchemist'
+        levels: 5
+        desc: ['Potions and poisons you make are 20% stronger.', 'Potions and poisons you make are 40% stronger.', 'Potions and poisons you make are 60% stronger.', 'Potions and poisons you make are 80% stronger.', 'Potions and poisons you make are 100% stronger.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Physician'
+        desc: ['Potions you mix that restore Health, Magicka or Stamina are 25% more powerful.']
+        req: [20]
+        pos: [110, -21]
+        deps: [0]
+      }
+      {
+        name: 'Poisoner'
+        desc: ['Poisons you mix are 25% more effective.']
+        req: [30]
+        pos: [20, -70]
+        deps: [1]
+      }
+      {
+        name: 'Benefactor'
+        desc: ['Potions you mix with beneficial effects have an additional 25% greater magnitude.']
+        req: [30]
+        pos: [87, -71]
+        deps: [1]
+      }
+      {
+        name: 'Concentrated Poison'
+        desc: ['Poisins applied to weapons last for twice as many hits.']
+        req: [60]
+        pos: [24, -110]
+        deps: [2]
+      }
+      {
+        name: 'Experimenter'
+        levels: 3
+        desc: ['Eating an ingredient reveals first two effects.', 'Eating an ingredient reveals first three effects.', 'Eating an ingredient reveals first two effects.']
+        req: [50, 50, 50]
+        pos: [77, -111]
+        deps: [3]
+      }
+      {
+        name: 'Green Thumb'
+        desc: ['Two ingredients are gathered from plants.']
+        req: [70]
+        pos: [31, -163]
+        deps: [4]
+      }
+      {
+        name: 'Snakeblood'
+        desc: ['50% resistance to all poisons.']
+        req: [80]
+        pos: [70, -178]
+        deps: [4, 5]
+      }
+      {
+        name: 'Purity'
+        desc: ['All negative effects are removed from created potions, and all positive effects are removed from created poisons.']
+        req: [100]
+        pos: [58, -216]
+        deps: [7]
+      }
+    ]
+  }
+  {
     name: 'Destruction'
     perks: [
       {
