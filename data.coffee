@@ -821,4 +821,78 @@ window.perkTrees = [
       }
     ]
   }
+  {
+    name: 'Two-Handed'
+    perks: [
+      {
+        name: 'Barbarian'
+        levels: 5
+        desc: ['Two-Handed weapons do 20% more damage.', 'Two-Handed weapons do 40% more damage.', 'Two-Handed weapons do 60% more damage.', 'Two-Handed weapons do 80% more damage.', 'Two-Handed weapons do 100% more damage.']
+        req: [0, 0, 0, 0, 0]
+        pos: [0, 0]
+      }
+      {
+        name: 'Limbsplitter'
+        levels: 3
+        desc: ['Attacks with battle axes cause extra bleeding damage.', 'Attacks with battle axes cause extra bleeding damage.', 'Attacks with battle axes cause extra bleeding damage.']
+        req: [30, 30, 30]
+        pos: [-41, -90]
+        deps: [0]
+      }
+      {
+        name: "Champion's Stance"
+        desc: ['Power attacks with two-handed weapons cost 25% less stamina.']
+        req: [20]
+        pos: [3, -60]
+        deps: [0]
+      }
+      {
+        name: 'Deep Wounds'
+        levels: 3
+        desc: ['Attacks with greatsword have a 10% chance of doing critical damage.', 'Attacks with greatsword have a 15% chance of doing critical damage.', 'Attacks with greatsword have a 20% chance of doing critical damage.']
+        req: [30, 30, 30]
+        pos: [43, -91]
+        deps: [0]
+      }
+      {
+        name: 'Skullcrusher'
+        levels: 3
+        desc: ['Attacks with warhammers ignore 25% of armor.', 'Attacks with warhammers ignore 50% of armor.', 'Attacks with warhammers ignore 75% of armor.']
+        req: [30, 30, 30]
+        pos: [74, -91]
+        captionOffset: [0, -13]
+        deps: [0]
+      }
+      {
+        name: 'Great Critical Charge'
+        desc: ['Can do a two-handed power attack while sprinting that does double critical damage.']
+        req: [50]
+        pos: [-13, -126]
+        deps: [2]
+      }
+      {
+        name: 'Devastating Blow'
+        desc: ['Standing power attacks do 25% bonus damage with a chance to decapitate your enemies.']
+        req: [50]
+        pos: [17, -127]
+        captionOffset: [0, -13]
+        deps: [2]
+      }
+      {
+        name: 'Sweep'
+        desc: ['Sideways power attacks with two-handed weapons hit all targets in front of you.']
+        req: [70]
+        pos: [7, -189]
+        deps: [5, 6]
+      }
+      {
+        name: 'Warmaster'
+        desc: ['Backwards power attack has a 25% chance to paralyze the target.']
+        req: [100]
+        pos: [8, -237]
+        captionOffset: [0, -13]
+        deps: [7]
+      }
+    ]
+  }
 ]
