@@ -75,6 +75,11 @@ getPerkLevel = (perk) ->
   id = perkId perk
   activePerkLevels[id] ? 0
 
+countActivePerks = ->
+  result = 0
+  for own key, value of activePerkLevels
+    result += value
+  return result
 
 activeData = ->
   bitArray = new BitArray(255)
@@ -90,6 +95,7 @@ activeData = ->
 
 
 readActiveData = (str) ->
+  activePerkLevels = {}
   bitArray = new BitArray(255)
   bitArray.parse(str)
   i = 0
@@ -256,7 +262,7 @@ class PerkTreeView
         ctx.shadowOffsetY = 2
         ctx.shadowBlur = 2
 
-        ctx.fillText(perkName, 0, 0, 0)
+        ctx.fillText(perkName, 0, 0)
         ctx.restore()
 
     ctx.restore()
@@ -277,7 +283,7 @@ class PerkTreeView
 
       ctx.font = 'bold 12px Arial'
       w = ctx.measureText(@model.name).width
-      ctx.fillText(@model.name, @frame[0]+@frame[2]/2-w/2, @frame[1]+@frame[3]-5, 0)
+      ctx.fillText(@model.name, @frame[0]+@frame[2]/2-w/2, @frame[1]+@frame[3]-5)
       ctx.restore()
     if hoveredPerk and (not title)
       ctx.save()
@@ -288,15 +294,15 @@ class PerkTreeView
       # Perk Name
       ctx.font = 'bold 14px Arial'
       ctx.fillStyle = 'rgba(255,255,255,0.7)'
-      ctx.fillText(getPerkDisplayName(hoveredPerk), 335, 743, 0)
+      ctx.fillText(getPerkDisplayName(hoveredPerk), 335, 743)
 
       # Perk Description
       ctx.font = '12px Arial'
-      ctx.fillText(hoveredPerk.desc[Math.max(0, activeLevel-1)], 335, 760, 0)
+      ctx.fillText(hoveredPerk.desc[Math.max(0, activeLevel-1)], 335, 760)
 
       # Next Level Description
       if activeLevel > 0 and activeLevel < maxLevels
-        ctx.fillText('Next Rank: ' + hoveredPerk.desc[Math.max(0, activeLevel)], 335, 777, 0)
+        ctx.fillText('Next Rank: ' + hoveredPerk.desc[Math.max(0, activeLevel)], 335, 777)
 
       ctx.restore()
 
@@ -326,6 +332,13 @@ redraw = ->
 
   ctx.restore()
 
+  activePerks = countActivePerks()
+  $('#active-perks').html(activePerks)
+  if activePerks == 0
+    $('.clear-perks').fadeOut('fast')
+  else
+    $('.clear-perks').fadeIn('fast')
+
 
 downHandler = (e) ->
   e.originalEvent.preventDefault()
@@ -346,12 +359,6 @@ downHandler = (e) ->
         workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}"
         redraw()
         break
-
-
-window.clearAllPerks = ->
-  if confirm('Really clear all perks?')
-    activePerkLevels = {}
-    workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}", true
 
 
 setCursor = (pointer) ->
@@ -410,7 +417,7 @@ $ ->
   y = padding
   width = 100
   height = 127
-  activePerkTreeView = new PerkTreeView(null, [320, padding, 670, 787], 2.8)
+  activePerkTreeView = new PerkTreeView(null, [320, padding, 675, 787], 2.8)
   for perkTree in perkTrees
     perkTreeViews.push new PerkTreeView(perkTree, [x, y, width, height], 0.4)
     i++
@@ -418,6 +425,11 @@ $ ->
     if (i % cols) == 0
       x = padding
       y += height + padding
+
+  $('.clear-perks').click ->
+    if confirm('Really clear all perks?')
+      activePerkLevels = {}
+      workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}", true
 
   $canvas
     .mousemove(moveHandler)
