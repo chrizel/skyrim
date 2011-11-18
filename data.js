@@ -7,7 +7,7 @@
           name: 'Alchemist',
           levels: 5,
           desc: ['Potions and poisons you make are 20% stronger.', 'Potions and poisons you make are 40% stronger.', 'Potions and poisons you make are 60% stronger.', 'Potions and poisons you make are 80% stronger.', 'Potions and poisons you make are 100% stronger.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Physician',
@@ -37,7 +37,7 @@
           name: 'Experimenter',
           levels: 3,
           desc: ['Eating an ingredient reveals first two effects.', 'Eating an ingredient reveals first three effects.', 'Eating an ingredient reveals first four effects.'],
-          req: [50, 50, 50],
+          req: [50, 70, 90],
           pos: [77, -111],
           deps: [3]
         }, {
@@ -152,7 +152,7 @@
           name: 'Summoner',
           levels: 2,
           desc: ['Can summon atronachs or raise undead twice as far away.', 'Can summon atronachs or raise undead three times as far away.'],
-          req: [30, 30],
+          req: [30, 70],
           pos: [-72, -70],
           deps: [0]
         }, {
@@ -428,14 +428,14 @@
           name: 'Mage Armor',
           levels: 3,
           desc: ['Protection spells like Stoneflesh are twice as strong if not wearing armor.', 'Protection spells like Stoneflesh are three times as strong if not wearing armor.', 'Protection spells like Stoneflesh are four times as strong if not wearing armor.'],
-          req: [30, 30, 30],
+          req: [30, 50, 70],
           pos: [-28, -124],
           deps: [2]
         }, {
           name: 'Magic Resistance',
           levels: 3,
           desc: ["Blocks 10% of a spell's effects.", "Blocks 15% of a spell's effects.", "Blocks 20% of a spell's effects."],
-          req: [30, 30, 30],
+          req: [30, 50, 70],
           pos: [50, -124],
           deps: [2]
         }, {
@@ -477,7 +477,7 @@
           name: 'Enchanter',
           levels: 5,
           desc: ['New enchantments are 20% stronger.', 'New enchantments are 40% stronger.', 'New enchantments are 60% stronger.', 'New enchantments are 80% stronger.', 'New enchantments are 100% stronger.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Fire Enchanter',
@@ -605,7 +605,7 @@
           name: 'Juggernaut',
           levels: 5,
           desc: ['Increases armor rating for Heavy Armor by 20%.', 'Increases armor rating for Heavy Armor by 40%.', 'Increases armor rating for Heavy Armor by 60%.', 'Increases armor rating for Heavy Armor by 80%.', 'Increases armor rating for Heavy Armor by 100%.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Fists of Steel',
@@ -658,7 +658,7 @@
           name: 'Shield Wall',
           levels: 5,
           desc: ['Blocking is 20% more effective.', 'Blocking is 40% more effective.', 'Blocking is 60% more effective.', 'Blocking is 80% more effective.', 'Blocking is 100% more effective.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Deflect Arrows',
@@ -720,13 +720,13 @@
           name: 'Barbarian',
           levels: 5,
           desc: ['Two-Handed weapons do 20% more damage.', 'Two-Handed weapons do 40% more damage.', 'Two-Handed weapons do 60% more damage.', 'Two-Handed weapons do 80% more damage.', 'Two-Handed weapons do 100% more damage.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Limbsplitter',
           levels: 3,
           desc: ['Attacks with battle axes cause extra bleeding damage.', 'Attacks with battle axes cause extra bleeding damage.', 'Attacks with battle axes cause extra bleeding damage.'],
-          req: [30, 30, 30],
+          req: [30, 60, 90],
           pos: [-41, -90],
           deps: [0]
         }, {
@@ -739,14 +739,14 @@
           name: 'Deep Wounds',
           levels: 3,
           desc: ['Attacks with greatsword have a 10% chance of doing critical damage.', 'Attacks with greatsword have a 15% chance of doing critical damage.', 'Attacks with greatsword have a 20% chance of doing critical damage.'],
-          req: [30, 30, 30],
+          req: [30, 60, 90],
           pos: [43, -91],
           deps: [0]
         }, {
           name: 'Skullcrusher',
           levels: 3,
           desc: ['Attacks with warhammers ignore 25% of armor.', 'Attacks with warhammers ignore 50% of armor.', 'Attacks with warhammers ignore 75% of armor.'],
-          req: [30, 30, 30],
+          req: [30, 60, 90],
           pos: [74, -91],
           captionOffset: [0, -13],
           deps: [0]
@@ -785,13 +785,13 @@
           name: 'Armsman',
           levels: 5,
           desc: ['One-Handed weapons do 20% more damage.', 'One-Handed weapons do 40% more damage.', 'One-Handed weapons do 60% more damage.', 'One-Handed weapons do 80% more damage.', 'One-Handed weapons do 100% more damage.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Hack and Slash',
           levels: 3,
           desc: ['Attacks with war axes cause extra bleeding damage.', 'Attacks with war axes cause extra bleeding damage.', 'Attacks with war axes cause extra bleeding damage.'],
-          req: [30, 30, 30],
+          req: [30, 60, 90],
           pos: [-45, -86],
           deps: [0]
         }, {
@@ -804,14 +804,14 @@
           name: 'Bone Breaker',
           levels: 3,
           desc: ['Attacks with maces ignore 25% of armor.', 'Attacks with maces ignore 50% of armor.', 'Attacks with maces ignore 75% of armor.'],
-          req: [30],
+          req: [30, 30, 30],
           pos: [23, -86],
           deps: [0]
         }, {
           name: 'Bladesman',
           levels: 3,
           desc: ['Attacks with swords have a 10% chance of doing critical damage.', 'Attacks with swords have a 15% chance of doing critical damage.', 'Attacks with swords have a 20% chance of doing critical damage.'],
-          req: [30],
+          req: [30, 60, 90],
           pos: [46, -86],
           captionOffset: [0, -13],
           deps: [0]
@@ -819,7 +819,7 @@
           name: 'Dual Flurry',
           levels: 2,
           desc: ['Dual wielding attacks are 20% faster.', 'Dual wielding attacks are 35% faster.'],
-          req: [30],
+          req: [30, 50],
           pos: [88, -40],
           deps: [0]
         }, {
@@ -858,7 +858,7 @@
           name: 'Overdraw',
           levels: 5,
           desc: ['Bows do 20% more damage.', 'Bows do 40% more damage.', 'Bows do 60% more damage.', 'Bows do 80% more damage.', 'Bows do 100% more damage.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Eagle Eye',
@@ -876,7 +876,7 @@
           name: 'Steady Hand',
           levels: 2,
           desc: ['Zooming in with a bow slows time by 25%.', 'Zooming in with a bow slows time by 50%.'],
-          req: [40],
+          req: [40, 60],
           pos: [-49, -68],
           deps: [1]
         }, {
@@ -916,8 +916,9 @@
       perks: [
         {
           name: 'Agile Defender',
-          desc: ['Increase armor rating for Light armor by 20%.'],
-          req: [0],
+          levels: 5,
+          desc: ['Increase armor rating for Light armor by 20%.', 'Increase armor rating for Light armor by 40%.', 'Increase armor rating for Light armor by 60%.', 'Increase armor rating for Light armor by 80%.', 'Increase armor rating for Light armor by 100%.'],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Custom Fit',
@@ -959,7 +960,7 @@
           name: 'Stealth',
           levels: 5,
           desc: ['You are 20% harder to detect when sneaking.', 'You are 40% harder to detect when sneaking.', 'You are 60% harder to detect when sneaking.', 'You are 80% harder to detect when sneaking.', 'You are 100% harder to detect when sneaking.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Backstab',
@@ -1088,7 +1089,7 @@
           name: 'Light Fingers',
           levels: 5,
           desc: ['Pickpocketing bonus of 20%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 40%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 60%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 80%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 100%. Item weight and value reduce pickpocketing odds.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Night Thief',
@@ -1141,7 +1142,7 @@
           name: 'Haggling',
           levels: 5,
           desc: ['Buying and selling prices are 10% better.', 'Buying and selling prices are 20% better.', 'Buying and selling prices are 30% better.', 'Buying and selling prices are 40% better.', 'Buying and selling prices are 50% better.'],
-          req: [0, 0, 0, 0, 0],
+          req: [0, 20, 40, 60, 80],
           pos: [0, 0]
         }, {
           name: 'Allure',
