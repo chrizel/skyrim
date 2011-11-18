@@ -997,8 +997,9 @@ window.perkTrees = [
       }
       {
         name: 'Critical Shot'
-        desc: ['10% chance of a critical hit that does extra damage.']
-        req: [30]
+        levels: 3
+        desc: ['10% chance of a critical hit that does extra damage.','15% chance of a critical hit that does extra damage.','20% chance of a critical hit that does extra damage.']
+        req: [30, 60, 90]
         pos: [-15, -69]
         deps: [0]
       }
