@@ -2,11 +2,21 @@ $canvas = null
 perkCircleRadius = 3
 hoveredPerk = null
 activePerkTreeView = null
+workspace = null
 
 activePerkLevels = {}
 
 perkTrees = window.perkTrees
 perkTreeViews = []
+
+perkTreeId = (perkTree) ->
+  i = 0
+  for pt in perkTrees
+    if pt == perkTree
+      return i
+    i++
+  return 0
+
 
 perkId = (perk) ->
   i = 0
@@ -64,6 +74,34 @@ forEachChildOfPerk = (perk, func) ->
 getPerkLevel = (perk) ->
   id = perkId perk
   activePerkLevels[id] ? 0
+
+
+activeData = ->
+  bitArray = new BitArray(255)
+  i = 0
+  for perkTree in perkTrees
+    for perk in perkTree.perks
+      maxLevels = perk.levels || 1
+      activeLevel = getPerkLevel(perk)
+      j = 0
+      while j < maxLevels
+        bitArray.set i++, activeLevel-1 == j++
+  return bitArray.toString()
+
+
+readActiveData = (str) ->
+  bitArray = new BitArray(255)
+  bitArray.parse(str)
+  i = 0
+  for perkTree in perkTrees
+    for perk in perkTree.perks
+      maxLevels = perk.levels || 1
+      j = 0
+      while j < maxLevels
+        if bitArray.get i++
+          activePerkLevels[perkId(perk)] = j+1
+        j++
+
 
 getPerkDisplayName = (perk) ->
   maxLevels = perk.levels || 1
@@ -256,12 +294,11 @@ downHandler = (e) ->
     perk = activePerkTreeView.perkAtPosition(x, y)
     if perk
       changePerkLevel(perk, if e.button == 2 then -1 else 1)
-      redraw()
+      workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}", true
   else
     for perkTreeView in perkTreeViews
       if perkTreeView.hitFrame(x, y)
-        activePerkTreeView.model = perkTreeView.model
-        redraw()
+        workspace.navigate "t/#{perkTreeId(perkTreeView.model)}/#{activeData()}", true
         break
 
 
@@ -292,9 +329,20 @@ moveHandler = (e) ->
         setCursor true
         break
 
-window.showAllPerks = ->
-  activePerkTreeView = null
-  redraw()
+
+class Workspace extends Backbone.Router
+  routes:
+    't/:tree/:data':  'tree'
+    't/:tree':        'tree'
+    '':               'tree'
+
+  tree: (tree = '0', data = '') ->
+    i = Math.min(Math.max(0, parseInt(tree, 10)), perkTrees.length-1)
+    activePerkTreeView.model = perkTrees[i]
+    if data != ''
+      readActiveData(data)
+    redraw()
+
 
 $ ->
   $canvas = $('#canvas')
@@ -310,7 +358,7 @@ $ ->
   y = padding
   width = 100
   height = 127
-  activePerkTreeView = new PerkTreeView(perkTrees[0], [320, padding, 670, 787], 2.5)
+  activePerkTreeView = new PerkTreeView(perkTrees[0], [320, padding, 670, 787], 2.8)
   for perkTree in perkTrees
     perkTreeViews.push new PerkTreeView(perkTree, [x, y, width, height], 0.4)
     i++
@@ -324,3 +372,6 @@ $ ->
     .mousedown(downHandler)
     .contextmenu (e) -> e.originalEvent.preventDefault()
   redraw()
+
+  workspace = new Workspace
+  Backbone.history.start()
