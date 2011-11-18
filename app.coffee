@@ -259,7 +259,6 @@ class PerkTreeView
         ctx.fillText(perkName, 0, 0, 0)
         ctx.restore()
 
-
     ctx.restore()
   
     if title
@@ -279,6 +278,26 @@ class PerkTreeView
       ctx.font = 'bold 12px Arial'
       w = ctx.measureText(@model.name).width
       ctx.fillText(@model.name, @frame[0]+@frame[2]/2-w/2, @frame[1]+@frame[3]-5, 0)
+      ctx.restore()
+    if hoveredPerk and (not title)
+      ctx.save()
+
+      maxLevels = hoveredPerk.levels || 1
+      activeLevel = getPerkLevel(hoveredPerk)
+
+      # Perk Name
+      ctx.font = 'bold 14px Arial'
+      ctx.fillStyle = 'rgba(255,255,255,0.7)'
+      ctx.fillText(getPerkDisplayName(hoveredPerk), 335, 743, 0)
+
+      # Perk Description
+      ctx.font = '12px Arial'
+      ctx.fillText(hoveredPerk.desc[Math.max(0, activeLevel-1)], 335, 760, 0)
+
+      # Next Level Description
+      if activeLevel > 0 and activeLevel < maxLevels
+        ctx.fillText('Next Rank: ' + hoveredPerk.desc[Math.max(0, activeLevel)], 335, 777, 0)
+
       ctx.restore()
 
 

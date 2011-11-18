@@ -40,7 +40,7 @@ window.perkTrees = [
       {
         name: 'Experimenter'
         levels: 3
-        desc: ['Eating an ingredient reveals first two effects.', 'Eating an ingredient reveals first three effects.', 'Eating an ingredient reveals first two effects.']
+        desc: ['Eating an ingredient reveals first two effects.', 'Eating an ingredient reveals first three effects.', 'Eating an ingredient reveals first four effects.']
         req: [50, 50, 50]
         pos: [77, -111]
         deps: [3]
