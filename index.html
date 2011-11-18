@@ -13,9 +13,18 @@
               border: none;
               color: rgb(200,200,200);
               font-family: Arial, helvetica, sans;
-              margin: 0;
+              margin: 0 0 50px 0;
               padding: 0;
               text-align: center;
+            }
+
+            a {
+              text-decoration: none;
+              color: rgb(100, 150, 230);
+            }
+
+            a:hover {
+              color: rgb(230, 150, 100);
             }
 
             button {
@@ -66,6 +75,11 @@
               display: none;
               float: left;
             }
+
+            .footer {
+              font-size: 12px;
+              margin: 20px 0 0 0;
+            }
         </style>
     </head>
     <body>
@@ -75,6 +89,23 @@
       <div class="toolbar">
         <div class="caption">Active perks:</div><div id="active-perks">0</div>
         <button class="clear-perks">Clear all</button>
+      </div>
+      <div class="footer">
+      If you'd like to support my work...<br />
+      <br />
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="PEJ3D7TFD3KEJ">
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+      </form>
+
+      <br />
+      Feedback? You can contact me at <script type="text/javascript">document.write('<a href="' + 'mail' + 'to:' + 'chri' + 'zel' + '@' + 'g' + 'mail' + '.com">' + 'chri' + 'zel' + '@' + 'g' + 'mail' + '.com' + '</a>');</script><br />
+      Copyright &copy; 2011 by Christian Zeller<br />
+      <br />
+      <br />
+      Skyrim is a registered trademark of <a href="http://www.bethsoft.com/" target="_blank">Bethesda Softworks</a>.
       </div>
     </body>
 </html>
