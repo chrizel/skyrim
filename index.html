@@ -16,11 +16,23 @@
               background: rgb(10,10,10);
             }
 
-            #canvas {
+            button {
+              background: rgb(30,30,30);
+              border: none;
+              color: rgb(200,200,200);
+              cursor: pointer;
+              font-weight: bold;
+              padding: 7px;
+            }
+
+            button:active {
+              background: rgb(0,0,0);
             }
         </style>
     </head>
     <body>
         <canvas id="canvas" width="1000" height="800"></canvas>
+        <br />
+        <button onclick="clearAllPerks();">Clear all</button>
     </body>
 </html>

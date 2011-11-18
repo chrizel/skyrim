@@ -306,12 +306,21 @@ downHandler = (e) ->
     perk = activePerkTreeView.perkAtPosition(x, y)
     if perk
       changePerkLevel(perk, if e.button == 2 then -1 else 1)
-      workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}", true
+      workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}"
+      redraw()
   else
     for perkTreeView in perkTreeViews
       if perkTreeView.hitFrame(x, y)
-        workspace.navigate "t/#{perkTreeId(perkTreeView.model)}/#{activeData()}", true
+        activePerkTreeView.model = perkTreeView.model
+        workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}"
+        redraw()
         break
+
+
+window.clearAllPerks = ->
+  if confirm('Really clear all perks?')
+    activePerkLevels = {}
+    workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}", true
 
 
 setCursor = (pointer) ->
