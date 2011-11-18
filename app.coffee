@@ -245,7 +245,7 @@ class PerkTreeView
 
         perkName = getPerkDisplayName(perk)
 
-        ctx.font = "bold 4px Arial"
+        ctx.font = "4px Arial"
         w = ctx.measureText(perkName).width
 
         captionOffset = perk.captionOffset || [0, 0]
@@ -272,6 +272,15 @@ class PerkTreeView
 
       ctx.save()
       if perkInfos.active > 0
+        ctx.shadowColor = 'rgb(10,10,10)'
+        ctx.shadowOffsetX = 2
+        ctx.shadowOffsetY = 2
+        ctx.shadowBlur = 2
+        ctx.fillStyle = 'rgba(100,100,100,0.8)'
+        ctx.font = 'bold 30px Arial'
+        ctx.fillText(perkInfos.active, @frame[0]+8, @frame[1]+30)
+
+      if perkInfos.active > 0
         ctx.fillStyle = 'rgb(100,150,230)'
       else
         ctx.fillStyle = 'rgb(200,200,200)'
@@ -281,9 +290,10 @@ class PerkTreeView
       ctx.shadowOffsetY = 2
       ctx.shadowBlur = 2
 
-      ctx.font = 'bold 12px Arial'
+      ctx.font = '12px Arial'
       w = ctx.measureText(@model.name).width
       ctx.fillText(@model.name, @frame[0]+@frame[2]/2-w/2, @frame[1]+@frame[3]-5)
+
       ctx.restore()
     if hoveredPerk and (not title)
       ctx.save()
@@ -312,7 +322,7 @@ redraw = ->
 
   ctx = $canvas[0].getContext("2d")
   ctx.save()
-  ctx.fillStyle = 'rgb(10,10,10)'
+  ctx.fillStyle = 'rgb(20,20,20)'
   ctx.fillRect(0, 0, $canvas.width(), $canvas.height())
 
   for perkTreeView in perkTreeViews
