@@ -298,6 +298,7 @@ redraw = ->
 
 
 downHandler = (e) ->
+  e.originalEvent.preventDefault()
   offset = $canvas.offset()
   x = e.pageX - offset.left
   y = e.pageY - offset.top

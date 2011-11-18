@@ -9,11 +9,13 @@
         <script type="text/javascript" src="app.js"></script>
         <style>
             html, body {
+              background: rgb(10,10,10);
               border: none;
-              margin: 10 auto;
+              color: rgb(200,200,200);
+              font-family: Arial, helvetica, sans;
+              margin: 10px auto;
               padding: 0;
               text-align: center;
-              background: rgb(10,10,10);
             }
 
             button {
@@ -28,11 +30,25 @@
             button:active {
               background: rgb(0,0,0);
             }
+
+            h1 {
+              margin: 10px 0;
+              padding: 0;
+              font-size: 20px;
+            }
+
+            .subtext {
+              color: rgb(100,100,100);
+              font-size: 12px;
+              margin: 0 5px;
+              padding: 0;
+            }
         </style>
     </head>
     <body>
-        <canvas id="canvas" width="1000" height="800"></canvas>
-        <br />
-        <button onclick="clearAllPerks();">Clear all</button>
+      <h1>Skyrim Perk Calculator<span class="subtext">by chrizel</span></h1>
+      <canvas id="canvas" width="1000" height="800"></canvas>
+      <br />
+      <button onclick="clearAllPerks();">Clear all</button>
     </body>
 </html>
