@@ -132,8 +132,14 @@ changePerkLevel = (perk, inc) ->
   newLevel = Math.max(0, Math.min(activeLevel+inc, maxLevels))
 
   if inc > 0
+    parentOk = false
     forEachParentOfPerk perk, (parent) ->
-      changePerkLevel(parent, inc) if getPerkLevel(parent) == 0
+      parentOk = true if getPerkLevel(parent) > 0
+    if not parentOk
+      forEachParentOfPerk perk, (parent) ->
+        if not parentOk
+          changePerkLevel(parent, inc)
+          parentOk = true
   else if newLevel == 0
     forEachChildOfPerk perk, (child) ->
       changePerkLevel(child, inc*100)
@@ -161,6 +167,7 @@ class PerkTreeView
     (y <= @frame[1]+@frame[3])
 
   perkAtPosition: (x, y) ->
+    return null if not @model
     result = null
     perkSize = perkCircleRadius * @scale
     root = @root()
@@ -191,6 +198,10 @@ class PerkTreeView
     ctx.fillStyle = if isActivePerkTree then 'rgb(0,0,0)' else 'rgb(30,30,30)'
     ctx.fillRect(@frame[0], @frame[1], @frame[2], @frame[3])
 
+    if not @model
+      ctx.restore()
+      return
+
     root = @root()
     ctx.translate(root[0], root[1])
     ctx.scale(@scale, @scale)
@@ -201,9 +212,10 @@ class PerkTreeView
         level = getPerkLevel(perk)
         for dep in perk.deps
           depPerk = @model.perks[dep]
+          connected = (level > 0) and (getPerkLevel(depPerk) > 0)
           ctx.beginPath()
-          ctx.lineWidth = if level > 0 then 1.5 else 0.5
-          ctx.strokeStyle = if level > 0 then 'rgba(100, 150, 230, 1.0)' else 'rgba(100, 150, 230, 0.5)'
+          ctx.lineWidth = if connected then 1.5 else 0.5
+          ctx.strokeStyle = if connected then 'rgba(100, 150, 230, 1.0)' else 'rgba(100, 150, 230, 0.5)'
           ctx.moveTo(depPerk.pos[0], depPerk.pos[1])
           ctx.lineTo(perk.pos[0], perk.pos[1])
           ctx.stroke()
@@ -272,15 +284,15 @@ redraw = ->
   if activePerkTreeView
     activePerkTreeView.draw ctx, true, false
 
-    perkInfos = getPerkInfos(activePerkTreeView.model)
+    if activePerkTreeView.model
+      perkInfos = getPerkInfos(activePerkTreeView.model)
 
-    ctx.fillStyle = 'rgba(255,255,255,0.7)'
-    ctx.font = 'bold 20px Arial'
-    ctx.fillText(activePerkTreeView.model.name, 335, 40)
-    ctx.font = 'bold 10px Arial'
-    ctx.fillText("Active perks: #{perkInfos.active} of #{perkInfos.max}", 335, 60)
-    ctx.fillText("Required skill level: #{perkInfos.req}", 335, 75)
-
+      ctx.fillStyle = 'rgba(255,255,255,0.7)'
+      ctx.font = 'bold 20px Arial'
+      ctx.fillText(activePerkTreeView.model.name, 335, 40)
+      ctx.font = 'bold 10px Arial'
+      ctx.fillText("Active perks: #{perkInfos.active} of #{perkInfos.max}", 335, 60)
+      ctx.fillText("Required skill level: #{perkInfos.req}", 335, 75)
 
   ctx.restore()
 
@@ -358,7 +370,7 @@ $ ->
   y = padding
   width = 100
   height = 127
-  activePerkTreeView = new PerkTreeView(perkTrees[0], [320, padding, 670, 787], 2.8)
+  activePerkTreeView = new PerkTreeView(null, [320, padding, 670, 787], 2.8)
   for perkTree in perkTrees
     perkTreeViews.push new PerkTreeView(perkTree, [x, y, width, height], 0.4)
     i++
