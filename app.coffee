@@ -263,8 +263,19 @@ class PerkTreeView
     ctx.restore()
   
     if title
+      perkInfos = getPerkInfos(@model)
+
       ctx.save()
-      ctx.fillStyle = if isActivePerkTree then 'rgb(255,255,255)' else 'rgb(200,200,200)'
+      if perkInfos.active > 0
+        ctx.fillStyle = 'rgb(100,150,230)'
+      else
+        ctx.fillStyle = 'rgb(200,200,200)'
+
+      ctx.shadowColor = 'rgb(10,10,10)'
+      ctx.shadowOffsetX = 2
+      ctx.shadowOffsetY = 2
+      ctx.shadowBlur = 2
+
       ctx.font = 'bold 12px Arial'
       w = ctx.measureText(@model.name).width
       ctx.fillText(@model.name, @frame[0]+@frame[2]/2-w/2, @frame[1]+@frame[3]-5, 0)
