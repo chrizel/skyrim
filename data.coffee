@@ -1170,7 +1170,6 @@ window.perkTrees = [
       {
         name: 'Novice Locks'
         desc: ['Novice locks are much easier to pick.']
-        req: [0]
         pos: [0, 0]
       }
       {

@@ -210,7 +210,7 @@ class PerkTreeView
   root: ->
     perkTreeFrame = @perkTreeFrame()
     x = @frame[0] + @frame[2]/2 - perkTreeFrame[2]/2 + perkTreeFrame[0]
-    y = @frame[1] + @frame[3]/2 + perkTreeFrame[3]/2
+    y = (@frame[1] + @frame[3]/2 + perkTreeFrame[3]/2) * 0.98
     return [x, y]
 
   draw: (ctx, captions, title) ->
@@ -321,7 +321,15 @@ class PerkTreeView
       # Perk Name
       ctx.font = 'bold 14px Arial'
       ctx.fillStyle = 'rgba(255,255,255,0.7)'
-      ctx.fillText(getPerkDisplayName(hoveredPerk), 335, 743)
+      displayName = getPerkDisplayName(hoveredPerk)
+      w = ctx.measureText(displayName).width
+      ctx.fillText(displayName, 335, 743)
+
+      # Requires
+      if hoveredPerk.req
+        ctx.font = '12px Arial'
+        ctx.fillStyle = 'rgba(200,200,200,0.7)'
+        ctx.fillText("Requires: #{hoveredPerk.req[Math.max(0, activeLevel-1)]}", 345+w, 743)
 
       # Perk Description
       ctx.font = '12px Arial'
@@ -329,7 +337,12 @@ class PerkTreeView
 
       # Next Level Description
       if activeLevel > 0 and activeLevel < maxLevels
-        ctx.fillText('Next Rank: ' + hoveredPerk.desc[Math.max(0, activeLevel)], 335, 777)
+        t = "Next Rank: #{hoveredPerk.desc[Math.max(0, activeLevel)]}"
+        w = ctx.measureText(t).width
+        ctx.fillText(t, 335, 777)
+        if hoveredPerk.req
+          t = "Requires: #{hoveredPerk.req[Math.max(0, activeLevel)]}"
+          ctx.fillText(t, 340+w, 777)
 
       ctx.restore()
 

@@ -279,12 +279,12 @@
       var perkTreeFrame, x, y;
       perkTreeFrame = this.perkTreeFrame();
       x = this.frame[0] + this.frame[2] / 2 - perkTreeFrame[2] / 2 + perkTreeFrame[0];
-      y = this.frame[1] + this.frame[3] / 2 + perkTreeFrame[3] / 2;
+      y = (this.frame[1] + this.frame[3] / 2 + perkTreeFrame[3] / 2) * 0.98;
       return [x, y];
     };
 
     PerkTreeView.prototype.draw = function(ctx, captions, title) {
-      var activeLevel, captionOffset, connected, dep, depPerk, isActivePerkTree, level, maxLevels, perk, perkInfos, perkName, radius, root, w, _i, _j, _k, _len, _len2, _len3, _ref, _ref2, _ref3;
+      var activeLevel, captionOffset, connected, dep, depPerk, displayName, isActivePerkTree, level, maxLevels, perk, perkInfos, perkName, radius, root, t, w, _i, _j, _k, _len, _len2, _len3, _ref, _ref2, _ref3;
       ctx.save();
       isActivePerkTree = activePerkTreeView && activePerkTreeView.model === this.model;
       ctx.fillStyle = isActivePerkTree ? 'rgb(0,0,0)' : 'rgb(30,30,30)';
@@ -378,11 +378,24 @@
         activeLevel = getPerkLevel(hoveredPerk);
         ctx.font = 'bold 14px Arial';
         ctx.fillStyle = 'rgba(255,255,255,0.7)';
-        ctx.fillText(getPerkDisplayName(hoveredPerk), 335, 743);
+        displayName = getPerkDisplayName(hoveredPerk);
+        w = ctx.measureText(displayName).width;
+        ctx.fillText(displayName, 335, 743);
+        if (hoveredPerk.req) {
+          ctx.font = '12px Arial';
+          ctx.fillStyle = 'rgba(200,200,200,0.7)';
+          ctx.fillText("Requires: " + hoveredPerk.req[Math.max(0, activeLevel - 1)], 345 + w, 743);
+        }
         ctx.font = '12px Arial';
         ctx.fillText(hoveredPerk.desc[Math.max(0, activeLevel - 1)], 335, 760);
         if (activeLevel > 0 && activeLevel < maxLevels) {
-          ctx.fillText('Next Rank: ' + hoveredPerk.desc[Math.max(0, activeLevel)], 335, 777);
+          t = "Next Rank: " + hoveredPerk.desc[Math.max(0, activeLevel)];
+          w = ctx.measureText(t).width;
+          ctx.fillText(t, 335, 777);
+          if (hoveredPerk.req) {
+            t = "Requires: " + hoveredPerk.req[Math.max(0, activeLevel)];
+            ctx.fillText(t, 340 + w, 777);
+          }
         }
         return ctx.restore();
       }
