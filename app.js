@@ -279,7 +279,7 @@
       var perkTreeFrame, x, y;
       perkTreeFrame = this.perkTreeFrame();
       x = this.frame[0] + this.frame[2] / 2 - perkTreeFrame[2] / 2 + perkTreeFrame[0];
-      y = (this.frame[1] + this.frame[3] / 2 + perkTreeFrame[3] / 2) * 0.98;
+      y = this.frame[1] + ((this.frame[3] / 2 + perkTreeFrame[3] / 2) * 0.98);
       return [x, y];
     };
 

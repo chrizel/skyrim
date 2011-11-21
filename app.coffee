@@ -210,7 +210,7 @@ class PerkTreeView
   root: ->
     perkTreeFrame = @perkTreeFrame()
     x = @frame[0] + @frame[2]/2 - perkTreeFrame[2]/2 + perkTreeFrame[0]
-    y = (@frame[1] + @frame[3]/2 + perkTreeFrame[3]/2) * 0.98
+    y = @frame[1] + ((@frame[3]/2 + perkTreeFrame[3]/2) * 0.98)
     return [x, y]
 
   draw: (ctx, captions, title) ->
