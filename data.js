@@ -434,7 +434,7 @@
         }, {
           name: 'Magic Resistance',
           levels: 3,
-          desc: ["Blocks 10% of a spell's effects.", "Blocks 15% of a spell's effects.", "Blocks 20% of a spell's effects."],
+          desc: ["Blocks 10% of a spell's effects.", "Blocks 20% of a spell's effects.", "Blocks 30% of a spell's effects."],
           req: [30, 50, 70],
           pos: [50, -124],
           deps: [2]
