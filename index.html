@@ -1,88 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Skyrim Perk Calculator And Respec Tool</title>
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" src="underscore.js"></script>
         <script type="text/javascript" src="backbone.js"></script>
-        <script type="text/javascript" src="data.js?3"></script>
+        <script type="text/javascript" src="data.js?4"></script>
         <script type="text/javascript" src="bitarray.js"></script>
-        <script type="text/javascript" src="app.js?1"></script>
-        <style>
-            html, body {
-              background: rgb(20,20,20);
-              border: none;
-              color: rgb(200,200,200);
-              font-family: Arial, helvetica, sans;
-              margin: 0 0 50px 0;
-              padding: 0;
-              text-align: center;
-            }
-
-            a {
-              text-decoration: none;
-              color: rgb(100, 150, 230);
-            }
-
-            a:hover {
-              color: rgb(230, 150, 100);
-            }
-
-            button {
-              background: rgb(30,30,30);
-              border: 1px solid rgb(0,0,0);
-              color: rgb(200,200,200);
-              cursor: pointer;
-              padding: 6px 10px;
-              margin: 0;
-            }
-
-            button:active {
-              background: rgb(0,0,0);
-            }
-
-            h1 {
-              font-size: 24px;
-              margin: 10px auto;
-              padding: 0;
-              text-align: left;
-              width: 990px;
-              text-shadow: 3px 3px 3px #000;
-            }
-
-            .toolbar {
-              background: rgb(30,30,30);
-              font-size: 12px;
-              margin: 0 auto;
-              padding: 5px 10px;
-              text-align: left;
-              width: 970px;
-              height: 30px;
-            }
-
-            .caption {
-              margin: 8px 10px;
-              float: left;
-            }
-
-            #active-perks {
-              display: block;
-              float: left;
-              margin: 8px 8px 0 0;
-              text-align: center;
-              width: 25px;
-              font-weight: bold;
-            }
-
-            .clear-perks {
-              display: none;
-              float: left;
-            }
-
-            .footer {
-              font-size: 12px;
-              margin: 20px 0 0 0;
-            }
-        </style>
+        <script type="text/javascript" src="app.js?2"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
 
         <script type="text/javascript">
 
@@ -99,10 +25,16 @@
         </script>
     </head>
     <body>
-      <h1>Skyrim Perk Calculator</h1>
+      <h1>Skyrim Perk Calculator And Respec Tool</h1>
+      <div class="info">
+        <b>New!</b> Now you can download respec scripts to respec your character to the perks you set with this tool. <a href="respec.html">Click here</a> for more information.
+      </div>
       <canvas id="canvas" width="1000" height="800"></canvas>
       <br />
       <div class="toolbar">
+        <button id="download-addperks">Download "addperks" script</button>
+        <button id="download-reset">Download "reset" script</button>
+        <button id="help">Help</button>
         <div class="caption">Active perks:</div><div id="active-perks">0</div>
         <button class="clear-perks">Clear all</button>
       </div>

@@ -18,7 +18,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-  var $canvas, PerkTreeView, Workspace, activeData, activePerkLevels, activePerkTreeView, changePerkLevel, countActivePerks, downHandler, forEachChildOfPerk, forEachParentOfPerk, getPerkDisplayName, getPerkInfos, getPerkLevel, hoveredPerk, isPerkChildOfParentWithIndex, moveHandler, perkCircleRadius, perkId, perkTreeId, perkTreeViews, perkTrees, readActiveData, redraw, setCursor, workspace;
+  var $canvas, PerkTreeView, Workspace, activeData, activePerkLevels, activePerkTreeView, changePerkLevel, countActivePerks, downHandler, forEachChildOfPerk, forEachParentOfPerk, getAddPerksCode, getPerkDisplayName, getPerkInfos, getPerkLevel, getResetCode, hoveredPerk, isPerkChildOfParentWithIndex, moveHandler, perkCircleRadius, perkId, perkTreeId, perkTreeViews, perkTrees, readActiveData, redraw, setCursor, workspace;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
   $canvas = null;
@@ -175,11 +175,12 @@
     return _results;
   };
 
-  getPerkDisplayName = function(perk) {
+  getPerkDisplayName = function(perk, level) {
     var activeLevel, maxLevels;
+    if (level == null) level = 0;
     maxLevels = perk.levels || 1;
     if (maxLevels === 1) return perk.name;
-    activeLevel = getPerkLevel(perk);
+    activeLevel = level > 0 ? level : getPerkLevel(perk);
     return "" + perk.name + " (" + activeLevel + "/" + maxLevels + ")";
   };
 
@@ -438,6 +439,62 @@
     }
   };
 
+  getResetCode = function() {
+    var id, level, perk, perkTree, perks, r, result, _i, _j, _k, _len, _len2, _len3;
+    result = [];
+    for (_i = 0, _len = perkTrees.length; _i < _len; _i++) {
+      perkTree = perkTrees[_i];
+      result.push("; Remove all perks from '" + perkTree.name + "'");
+      perks = _.clone(perkTree.perks);
+      perks.reverse();
+      for (_j = 0, _len2 = perks.length; _j < _len2; _j++) {
+        perk = perks[_j];
+        if (perk.id) {
+          r = _.clone(perk.id);
+          r.reverse();
+          level = perk.levels || 1;
+          for (_k = 0, _len3 = r.length; _k < _len3; _k++) {
+            id = r[_k];
+            result.push("player.removeperk " + id + " ; " + (getPerkDisplayName(perk, level--)));
+          }
+        }
+      }
+      result.push("");
+    }
+    return result.join("\r\n");
+  };
+
+  getAddPerksCode = function() {
+    var activeLevel, id, level, perk, perkInfos, perkTree, result, _i, _j, _k, _len, _len2, _len3, _ref, _ref2;
+    result = [];
+    result.push("player.setlevel " + (Math.max(1, countActivePerks())));
+    for (_i = 0, _len = perkTrees.length; _i < _len; _i++) {
+      perkTree = perkTrees[_i];
+      perkInfos = getPerkInfos(perkTree);
+      result.push("");
+      result.push("; Add perks to '" + perkTree.name + "'");
+      result.push("player.setav " + perkTree.cname + " " + (Math.max(15, perkInfos.req)));
+      _ref = perkTree.perks;
+      for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
+        perk = _ref[_j];
+        if (perk.id) {
+          activeLevel = getPerkLevel(perk);
+          level = 1;
+          _ref2 = perk.id;
+          for (_k = 0, _len3 = _ref2.length; _k < _len3; _k++) {
+            id = _ref2[_k];
+            if (level <= activeLevel) {
+              result.push("player.addperk " + id + " ; " + (getPerkDisplayName(perk, level++)));
+            } else {
+              break;
+            }
+          }
+        }
+      }
+    }
+    return result.join("\r\n");
+  };
+
   downHandler = function(e) {
     var offset, perk, perkTreeView, x, y, _i, _len, _results;
     e.originalEvent.preventDefault();
@@ -564,6 +621,15 @@
         activePerkLevels = {};
         return workspace.navigate("t/" + (perkTreeId(activePerkTreeView.model)) + "/" + (activeData()), true);
       }
+    });
+    $('#download-reset').click(function() {
+      return window.open("data:application/octet-stream," + (encodeURI(getResetCode())));
+    });
+    $('#download-addperks').click(function() {
+      return window.open("data:application/octet-stream," + (encodeURI(getAddPerksCode())));
+    });
+    $('#help').click(function() {
+      return window.open("respec.html");
     });
     $canvas.mousemove(moveHandler).mousedown(downHandler).contextmenu(function(e) {
       return e.originalEvent.preventDefault();

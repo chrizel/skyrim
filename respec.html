@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Skyrim Respec Tool Help</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <style>
+        h1 {
+          text-align: center;
+          margin: 30px 20px;
+          width: auto;
+        }
+
+        #content {
+          margin: 0 auto;
+          text-align: left;
+          width: 600px;
+          font-size: 14px;
+          line-height: 140%;
+        }
+        </style>
+
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-27182295-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+    </head>
+    <body>
+      <h1>Skyrim Respec Tool Help</h1>
+      <div id="content">
+      With this tool you can create Skyrim character builds and download generated script files that contain all Skyrim console commands to change your in-game character to the defined skills. The scripts change the character level and the specific skill tree levels to the required skill level. They set all desired perks for your defined build after resetting all active perks, so all existing perks that you didn't set with this tool are getting reset.
+      <p>
+      The steps here described only work with the PC version of Skyrim!
+      <p>
+      <ol>
+        <li><b>Backup all your save files!</b> I give you no guarantee that anything works or that your game will work after you executed the scripts. Please backup your save files! Normally they are located in C:\Users\&lt;YOUR USERNAME&gt;\My Documents\My Games\Skyrim\Saves\</li>
+        <li>Create your perk build with the tool and click 'Download "reset" script' on the bottom right corner of the page and save the file in your Skyrim application directory as "<b>reset.txt</b>". Then click 'Download "addperks" script' and save it in your Skyrim application directory as "<b>addperks.txt</b>". On a Steam installation the Skyrim application directory is located in &lt;STEAM DIRECTORY&gt;\steamapps\common\skyrim\</li>
+        <li>Start Skyrim and load your desired save file to enter the world of Skyrim. Then open the Skyrim console with the <b>~</b> (tilde) key. Enter the following command: <b>bat &quot;reset.txt&quot;</b> and hit return. Then this command: <b>bat &quot;addperks.txt&quot;</b> and hit return. You can hide the console again with the <b>~</b> (tilde) key.
+      </ol>
+      After you executed the scripts your character should have your desired abilities. The scripts change your level and perks, but don't change your attributes i.e. magicka, health and stamina are not affected. If you want to change them you could use the console command "<i>player.setav health 500</i>" etc.
+      <p>
+      <b>Warning: </b>After executing the scripts certain things could break. It is not guaranteed that Steam achievements still work or that anything game related won't break after changing the level and skills with this method. So please make backups and use it only if you are sure what you are doing!
+      <p>
+      <b>Note: </b>We work with two scripts here: <i>reset.txt</i> resets all active perks and is always the same file. <i>addperks.txt</i> then sets the character level and skill levels to the needed values, and activates all desired perks. Why do we do this with two separate files? Well, I tried it with a single script file first, but it didn't work. If one removeperk command is followed by an addperk command for the same perk in the same file, it doesn't seem to add the perk. So that's the reason why we do it with two files and run the <i>bat</i> command in two separate steps. If you create a new character you could skip the reset.txt script.
+      <p>
+      <a href="index.html">Go Back</a>
+      </div>
+      <div class="footer">
+      If you'd like to support my work...<br />
+      <br />
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="PEJ3D7TFD3KEJ">
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+      </form>
+
+      <br />
+      Feedback? You can contact me at <script type="text/javascript">document.write('<a href="' + 'mail' + 'to:' + 'chri' + 'zel' + '@' + 'g' + 'mail' + '.com">' + 'chri' + 'zel' + '@' + 'g' + 'mail' + '.com' + '</a>');</script><br />
+      Copyright &copy; 2011 by Christian Zeller<br />
+      <br />
+      <br />
+      Skyrim is a registered trademark of <a href="http://www.bethsoft.com/" target="_blank">Bethesda Softworks</a>.
+      </div>
+    </body>
+</html>

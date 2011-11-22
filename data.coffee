@@ -1,6 +1,7 @@
 window.perkTrees = [
   {
     name: 'Alchemy'
+    cname: 'alchemy'
     perks: [
       {
         name: 'Alchemist'
@@ -8,6 +9,7 @@ window.perkTrees = [
         desc: ['Potions and poisons you make are 20% stronger.', 'Potions and poisons you make are 40% stronger.', 'Potions and poisons you make are 60% stronger.', 'Potions and poisons you make are 80% stronger.', 'Potions and poisons you make are 100% stronger.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BE127', '000C07CA', '000C07CB', '000C07CC', '000C07CD']
       }
       {
         name: 'Physician'
@@ -15,6 +17,7 @@ window.perkTrees = [
         req: [20]
         pos: [110, -21]
         deps: [0]
+        id: ['00058215']
       }
       {
         name: 'Poisoner'
@@ -22,6 +25,7 @@ window.perkTrees = [
         req: [30]
         pos: [20, -70]
         deps: [1]
+        id: ['00058217']
       }
       {
         name: 'Benefactor'
@@ -29,6 +33,7 @@ window.perkTrees = [
         req: [30]
         pos: [87, -71]
         deps: [1]
+        id: ['00058216']
       }
       {
         name: 'Concentrated Poison'
@@ -36,6 +41,7 @@ window.perkTrees = [
         req: [60]
         pos: [24, -110]
         deps: [2]
+        id: ['00105F2F']
       }
       {
         name: 'Experimenter'
@@ -44,6 +50,7 @@ window.perkTrees = [
         req: [50, 70, 90]
         pos: [77, -111]
         deps: [3]
+        id: ['00058218', '00105F2A', '00105F2B']
       }
       {
         name: 'Green Thumb'
@@ -51,6 +58,7 @@ window.perkTrees = [
         req: [70]
         pos: [31, -163]
         deps: [4]
+        id: ['00105F2E']
       }
       {
         name: 'Snakeblood'
@@ -58,6 +66,7 @@ window.perkTrees = [
         req: [80]
         pos: [70, -178]
         deps: [4, 5]
+        id: ['00105F2C']
       }
       {
         name: 'Purity'
@@ -65,16 +74,19 @@ window.perkTrees = [
         req: [100]
         pos: [58, -216]
         deps: [7]
+        id: ['0005821D']
       }
     ]
   }
   {
     name: 'Illusion'
+    cname: 'illusion'
     perks: [
       {
         name: 'Novice Illusion'
         desc: ['Cast Novice level Illusion spells for half magicka.']
         pos: [0, 0]
+        id: ['000F2CA9']
       }
       {
         name: 'Illusion Dual Casting'
@@ -82,6 +94,7 @@ window.perkTrees = [
         req: [20]
         pos: [-87, -3]
         deps: [0]
+        id: ['000153D0']
       }
       {
         name: 'Apprentice Illusion'
@@ -89,6 +102,7 @@ window.perkTrees = [
         req: [25]
         pos: [-59, -56]
         deps: [0]
+        id: ['000C44C3']
       }
       {
         name: 'Hypnotic Gaze'
@@ -96,6 +110,7 @@ window.perkTrees = [
         req: [30]
         pos: [-8, -72]
         deps: [0]
+        id: ['00059B77']
       }
       {
         name: 'Animage'
@@ -103,6 +118,7 @@ window.perkTrees = [
         req: [20]
         pos: [63, -40]
         deps: [0]
+        id: ['000581E1']
       }
       {
         name: 'Adept Illusion'
@@ -110,6 +126,7 @@ window.perkTrees = [
         req: [50]
         pos: [-57, -100]
         deps: [2]
+        id: ['000C44C4']
       }
       {
         name: 'Expert Illusion'
@@ -117,6 +134,7 @@ window.perkTrees = [
         req: [75]
         pos: [-60, -123]
         deps: [5]
+        id: ['000C44C5']
       }
       {
         name: 'Master Illusion'
@@ -124,6 +142,7 @@ window.perkTrees = [
         req: [100]
         pos: [-32, -153]
         deps: [6]
+        id: ['000C44C6']
       }
       {
         name: 'Aspect of Terror'
@@ -131,6 +150,7 @@ window.perkTrees = [
         req: [50]
         pos: [-27, -112]
         deps: [3]
+        id: ['00059B78']
       }
       {
         name: 'Rage'
@@ -138,6 +158,7 @@ window.perkTrees = [
         req: [70]
         pos: [-12, -122]
         deps: [8]
+        id: ['000C44B5']
       }
       {
         name: 'Kindred Mage'
@@ -145,6 +166,7 @@ window.perkTrees = [
         req: [40]
         pos: [26, -86]
         deps: [4]
+        id: ['000581E2']
       }
       {
         name: 'Quiet Casting'
@@ -152,6 +174,7 @@ window.perkTrees = [
         req: [50]
         pos: [23, -124]
         deps: [10]
+        id: ['000581FD']
       }
       {
         name: 'Master of the Mind'
@@ -159,16 +182,19 @@ window.perkTrees = [
         req: [90]
         pos: [7, -154]
         deps: [9, 11]
+        id: ['00059B76']
       }
     ]
   }
   {
     name: 'Conjuration'
+    cname: 'conjuration'
     perks: [
       {
         name: 'Novice Conjuration'
         desc: ['Cast Novice level Conjuration spells for half magicka.']
         pos: [0, 0]
+        id: ['000F2CA7']
       }
       {
         name: 'Summoner'
@@ -177,6 +203,7 @@ window.perkTrees = [
         req: [30, 70]
         pos: [-72, -70]
         deps: [0]
+        id: ['00105F30', '00105F31']
       }
       {
         name: 'Conjuration Dual Casting'
@@ -184,6 +211,7 @@ window.perkTrees = [
         req: [20]
         pos: [-30, -54]
         deps: [0]
+        id: ['000153CE']
       }
       {
         name: 'Necromancy'
@@ -191,6 +219,7 @@ window.perkTrees = [
         req: [40]
         pos: [-44, -133]
         deps: [0]
+        id: ['000581DD']
       }
       {
         name: 'Mystic Binding'
@@ -198,6 +227,7 @@ window.perkTrees = [
         req: [20]
         pos: [9, -55]
         deps: [0]
+        id: ['000640B3']
       }
       {
         name: 'Apprentice Conjuration'
@@ -205,6 +235,7 @@ window.perkTrees = [
         req: [25]
         pos: [45, -70]
         deps: [0]
+        id: ['000C44BB']
       }
       {
         name: 'Atromancy'
@@ -212,6 +243,7 @@ window.perkTrees = [
         req: [40]
         pos: [-80, -134]
         deps: [1]
+        id: ['000CB419']
       }
       {
         name: 'Elemental Potency'
@@ -219,6 +251,7 @@ window.perkTrees = [
         req: [80]
         pos: [-75, -161]
         deps: [6]
+        id: ['000CB41A']
       }
       {
         name: 'Dark Souls'
@@ -226,6 +259,7 @@ window.perkTrees = [
         req: [70]
         pos: [-45, -162]
         deps: [3]
+        id: ['000581DE']
       }
       {
         name: 'Twin Souls'
@@ -234,6 +268,7 @@ window.perkTrees = [
         pos: [-39, -175]
         captionOffset: [0, -13]
         deps: [7, 8]
+        id: ['000D5F1C']
       }
       {
         name: 'Soul Stealer'
@@ -241,6 +276,7 @@ window.perkTrees = [
         req: [30]
         pos: [15, -123]
         deps: [4]
+        id: ['000D799E']
       }
       {
         name: 'Oblivion Binding'
@@ -249,6 +285,7 @@ window.perkTrees = [
         pos: [14, -143]
         captionOffset: [0, -13]
         deps: [10]
+        id: ['000D799C']
       }
       {
         name: 'Adept Conjuration'
@@ -256,6 +293,7 @@ window.perkTrees = [
         req: [50]
         pos: [52, -109]
         deps: [5]
+        id: ['000C44BC']
       }
       {
         name: 'Expert Conjuration'
@@ -263,6 +301,7 @@ window.perkTrees = [
         req: [75]
         pos: [45, -141]
         deps: [12]
+        id: ['000C44BD']
       }
       {
         name: 'Master Conjuration'
@@ -271,16 +310,19 @@ window.perkTrees = [
         pos: [19, -175]
         captionOffset: [0, -13]
         deps: [13]
+        id: ['000C44BE']
       }
     ]
   }
   {
     name: 'Destruction'
+    cname: 'destruction'
     perks: [
       {
         name: 'Novice Destruction'
         desc: ['Cast Novice level Destruction spells for half magicka.']
         pos: [0, 0]
+        id: ['000F2CA8']
       }
       {
         name: 'Destruction Dual Casting'
@@ -288,6 +330,7 @@ window.perkTrees = [
         req: [20]
         pos: [64, -21]
         deps: [0]
+        id: ['000153CF']
       }
       {
         name: 'Impact'
@@ -295,6 +338,7 @@ window.perkTrees = [
         req: [40]
         pos: [79, -56]
         deps: [1]
+        id: ['000153D2']
       }
       {
         name: 'Augmented Flames'
@@ -303,6 +347,7 @@ window.perkTrees = [
         req: [30, 60]
         pos: [-44, -72]
         deps: [0]
+        id: ['000581E7', '0010FCF8']
       }
       {
         name: 'Intense Flames'
@@ -310,6 +355,7 @@ window.perkTrees = [
         req: [50]
         pos: [-50, -111]
         deps: [3]
+        id: ['000F392E']
       }
       {
         name: 'Augmented Frost'
@@ -318,6 +364,7 @@ window.perkTrees = [
         req: [30, 60]
         pos: [-12, -85]
         deps: [0]
+        id: ['000581EA', '0010FCF9']
       }
       {
         name: 'Deep Freeze'
@@ -325,6 +372,7 @@ window.perkTrees = [
         req: [60]
         pos: [-16, -133]
         deps: [5]
+        id: ['000F3933']
       }
       {
         name: 'Augmented Shock'
@@ -334,6 +382,7 @@ window.perkTrees = [
         pos: [13, -86]
         captionOffset: [0, -13]
         deps: [0]
+        id: ['00058200', '0010FCFA']
       }
       {
         name: 'Disintegrate'
@@ -341,6 +390,7 @@ window.perkTrees = [
         req: [70]
         pos: [13, -143]
         deps: [7]
+        id: ['000F3F0E']
       }
       {
         name: 'Apprentice Destruction'
@@ -348,6 +398,7 @@ window.perkTrees = [
         req: [25]
         pos: [42, -55]
         deps: [0]
+        id: ['000C44BF']
       }
       {
         name: 'Rune Master'
@@ -355,6 +406,7 @@ window.perkTrees = [
         req: [40]
         pos: [67, -87]
         deps: [9]
+        id: ['00105F32']
       }
       {
         name: 'Adept Destruction'
@@ -362,6 +414,7 @@ window.perkTrees = [
         req: [50]
         pos: [38, -110]
         deps: [9]
+        id: ['000C44C0']
       }
       {
         name: 'Expert Destruction'
@@ -369,6 +422,7 @@ window.perkTrees = [
         req: [75]
         pos: [52, -141]
         deps: [11]
+        id: ['000C44C1']
       }
       {
         name: 'Master Destruction'
@@ -376,16 +430,19 @@ window.perkTrees = [
         req: [100]
         pos: [51, -186]
         deps: [12]
+        id: ['000C44C2']
       }
     ]
   }
   {
     name: 'Restoration'
+    cname: 'restoration'
     perks: [
       {
         name: 'Novice Restoration'
         desc: ['Cast Novice level Restoration spells for half magicka.']
         pos: [0, 0]
+        id: ['000F2CAA']
       }
       {
         name: 'Respite'
@@ -393,6 +450,7 @@ window.perkTrees = [
         req: [40]
         pos: [-117, -70]
         deps: [0]
+        id: ['000581F9']
       }
       {
         name: 'Regeneration'
@@ -400,6 +458,7 @@ window.perkTrees = [
         req: [20]
         pos: [-53, -58]
         deps: [0]
+        id: ['000581F8']
       }
       {
         name: 'Necromage'
@@ -407,6 +466,7 @@ window.perkTrees = [
         req: [70]
         pos: [-103, -124]
         deps: [2]
+        id: ['000581E4']
       }
       {
         name: 'Ward Absorb'
@@ -414,6 +474,7 @@ window.perkTrees = [
         req: [60]
         pos: [-46, -123]
         deps: [0]
+        id: ['00068BCC']
       }
       {
         name: 'Apprentice Restoration'
@@ -421,6 +482,7 @@ window.perkTrees = [
         req: [25]
         pos: [10, -55]
         deps: [0]
+        id: ['000C44C7']
       }
       {
         name: 'Adept Restoration'
@@ -428,6 +490,7 @@ window.perkTrees = [
         req: [50]
         pos: [-7, -113]
         deps: [5]
+        id: ['000C44C8']
       }
       {
         name: 'Expert Restoration'
@@ -435,6 +498,7 @@ window.perkTrees = [
         req: [75]
         pos: [-3, -161]
         deps: [6]
+        id: ['000C44C9']
       }
       {
         name: 'Master Restoration'
@@ -442,6 +506,7 @@ window.perkTrees = [
         req: [100]
         pos: [-29, -177]
         deps: [7]
+        id: ['000C44CA']
       }
       {
         name: 'Recovery'
@@ -450,6 +515,7 @@ window.perkTrees = [
         req: [30, 60]
         pos: [79, -71]
         deps: [0]
+        id: ['000581F4', '000581F5']
       }
       {
         name: 'Avoid Death'
@@ -457,6 +523,7 @@ window.perkTrees = [
         req: [90]
         pos: [100, -110]
         deps: [9]
+        id: ['000A3F64']
       }
       {
         name: 'Restoration Dual Casting'
@@ -464,16 +531,19 @@ window.perkTrees = [
         req: [20]
         pos: [57, -40]
         deps: [0]
+        id: ['000153D1']
       }
     ]
   }
   {
     name: 'Alteration'
+    cname: 'alteration'
     perks: [
       {
         name: 'Novice Alteration'
         desc: ['Cast Novice level Alteration spells for half magicka.']
         pos: [0, 0]
+        id: ['000F2CA6']
       }
       {
         name: 'Alteration Dual Casting'
@@ -481,6 +551,7 @@ window.perkTrees = [
         req: [20]
         pos: [-32, -56]
         deps: [0]
+        id: ['000153CD']
       }
       {
         name: 'Apprentice Alteration'
@@ -488,6 +559,7 @@ window.perkTrees = [
         req: [25]
         pos: [8, -72]
         deps: [0]
+        id: ['000C44B7']
       }
       {
         name: 'Mage Armor'
@@ -496,6 +568,7 @@ window.perkTrees = [
         req: [30, 50, 70]
         pos: [-28, -124]
         deps: [2]
+        id: ['000D7999', '000D799A', '000D799B']
       }
       {
         name: 'Magic Resistance'
@@ -504,6 +577,7 @@ window.perkTrees = [
         req: [30, 50, 70]
         pos: [50, -124]
         deps: [2]
+        id: ['00053128', '00053129', '0005312A']
       }
       {
         name: 'Adept Alteration'
@@ -511,6 +585,7 @@ window.perkTrees = [
         req: [50]
         pos: [8, -135]
         deps: [2]
+        id: ['000C44B8']
       }
       {
         name: 'Stability'
@@ -518,6 +593,7 @@ window.perkTrees = [
         req: [70]
         pos: [-18, -162]
         deps: [5]
+        id: ['000581FC']
       }
       {
         name: 'Expert Alteration'
@@ -525,6 +601,7 @@ window.perkTrees = [
         req: [75]
         pos: [30, -162]
         deps: [5]
+        id: ['000C44B9']
       }
       {
         name: 'Atronach'
@@ -532,6 +609,7 @@ window.perkTrees = [
         req: [100]
         pos: [-41, -198]
         deps: [7]
+        id: ['000581F7']
       }
       {
         name: 'Master Alteration'
@@ -539,11 +617,13 @@ window.perkTrees = [
         req: [100]
         pos: [70, -198]
         deps: [7]
+        id: ['000C44BA']
       }
     ]
   }
   {
     name: 'Enchanting'
+    cname: 'enchanting'
     perks: [
       {
         name: 'Enchanter'
@@ -551,6 +631,7 @@ window.perkTrees = [
         desc: ['New enchantments are 20% stronger.', 'New enchantments are 40% stronger.', 'New enchantments are 60% stronger.', 'New enchantments are 80% stronger.', 'New enchantments are 100% stronger.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BEE97', '000C367C', '000C367D', '000C367E', '000C367F']
       }
       {
         name: 'Fire Enchanter'
@@ -558,6 +639,7 @@ window.perkTrees = [
         req: [30]
         pos: [-24, -69]
         deps: [0]
+        id: ['00058F80']
       }
       {
         name: 'Insightful Enchanter'
@@ -565,6 +647,7 @@ window.perkTrees = [
         req: [50]
         pos: [22, -69]
         deps: [0]
+        id: ['00058F7E']
       }
       {
         name: 'Soul Squeezer'
@@ -572,6 +655,7 @@ window.perkTrees = [
         req: [20]
         pos: [75, -69]
         deps: [0]
+        id: ['00058F7C']
       }
       {
         name: 'Soul Siphon'
@@ -580,6 +664,7 @@ window.perkTrees = [
         pos: [64, -141]
         captionOffset: [0, -13]
         deps: [3]
+        id: ['00108A44']
       }
       {
         name: 'Frost Enchanter'
@@ -587,6 +672,7 @@ window.perkTrees = [
         req: [40]
         pos: [-18, -108]
         deps: [1]
+        id: ['00058F81']
       }
       {
         name: 'Storm Enchanter'
@@ -594,6 +680,7 @@ window.perkTrees = [
         req: [50]
         pos: [-1, -139]
         deps: [5]
+        id: ['00058F82']
       }
       {
         name: 'Corpus Enchanter'
@@ -601,6 +688,7 @@ window.perkTrees = [
         req: [70]
         pos: [43, -108]
         deps: [2]
+        id: ['00058F7D']
       }
       {
         name: 'Extra Effect'
@@ -609,16 +697,19 @@ window.perkTrees = [
         pos: [37, -166]
         captionOffset: [0, -13]
         deps: [6, 7]
+        id: ['00058F7F']
       }
     ]
   }
   {
     name: 'Smithing'
+    cname: 'smithing'
     perks: [
       {
         name: 'Steel Smithing'
         desc: ['Can create Steel armor and weapons at forges, and improve them twice as much.']
         pos: [0, 0]
+        id: ['000CB40D']
       }
       {
         name: 'Elven Smithing'
@@ -626,6 +717,7 @@ window.perkTrees = [
         req: [30]
         pos: [-55, -46]
         deps: [0]
+        id: ['000CB40F']
       }
       {
         name: 'Arcane Blacksmith'
@@ -633,6 +725,7 @@ window.perkTrees = [
         req: [60]
         pos: [4, -45]
         deps: [0]
+        id: ['0005218E']
       }
       {
         name: 'Dwarven Smithing'
@@ -640,6 +733,7 @@ window.perkTrees = [
         req: [30]
         pos: [42, -33]
         deps: [0]
+        id: ['000CB40E']
       }
       {
         name: 'Advanced Armors'
@@ -648,6 +742,7 @@ window.perkTrees = [
         pos: [-49, -57]
         captionOffset: [0, -13]
         deps: [1]
+        id: ['000CB414']
       }
       {
         name: 'Glass Smithing'
@@ -656,6 +751,7 @@ window.perkTrees = [
         pos: [-10, -70]
         captionOffset: [0, -13]
         deps: [4]
+        id: ['000CB411']
       }
       {
         name: 'Orcish Smithing'
@@ -663,6 +759,7 @@ window.perkTrees = [
         req: [50]
         pos: [81, -51]
         deps: [3]
+        id: ['000CB410']
       }
       {
         name: 'Ebony Smithing'
@@ -671,6 +768,7 @@ window.perkTrees = [
         pos: [114, -50]
         captionOffset: [0, -13]
         deps: [6]
+        id: ['000CB412']
       }
       {
         name: 'Daedric Smithing'
@@ -679,6 +777,7 @@ window.perkTrees = [
         pos: [59, -66]
         captionOffset: [0, -13]
         deps: [7]
+        id: ['000CB413']
       }
       {
         name: 'Dragon Armor'
@@ -686,11 +785,13 @@ window.perkTrees = [
         req: [100]
         pos: [27, -71]
         deps: [5, 8]
+        id: ['00052190']
       }
     ]
   }
   {
     name: 'Heavy Armor'
+    cname: 'heavyarmor'
     perks: [
       {
         name: 'Juggernaut'
@@ -698,6 +799,7 @@ window.perkTrees = [
         desc: ['Increases armor rating for Heavy Armor by 20%.', 'Increases armor rating for Heavy Armor by 40%.', 'Increases armor rating for Heavy Armor by 60%.', 'Increases armor rating for Heavy Armor by 80%.', 'Increases armor rating for Heavy Armor by 100%.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BCD2A', '0007935E', '00079361', '00079362', '00079374']
       }
       {
         name: 'Fists of Steel'
@@ -705,6 +807,7 @@ window.perkTrees = [
         req: [30]
         pos: [-55, -56]
         deps: [0]
+        id: ['00058F6E']
       }
       {
         name: 'Cushioned'
@@ -712,6 +815,7 @@ window.perkTrees = [
         req: [50]
         pos: [-85, -111]
         deps: [1]
+        id: ['000BCD2B']
       }
       {
         name: 'Conditioning'
@@ -719,6 +823,7 @@ window.perkTrees = [
         req: [70]
         pos: [-81, -170]
         deps: [2]
+        id: ['00058F6D']
       }
       {
         name: 'Well Fitted'
@@ -726,6 +831,7 @@ window.perkTrees = [
         req: [30]
         pos: [51, -56]
         deps: [0]
+        id: ['00058F6F']
       }
       {
         name: 'Tower of Strength'
@@ -733,6 +839,7 @@ window.perkTrees = [
         req: [50]
         pos: [70, -111]
         deps: [4]
+        id: ['00058F6C']
       }
       {
         name: 'Matching Set'
@@ -740,6 +847,7 @@ window.perkTrees = [
         req: [70]
         pos: [82, -143]
         deps: [5]
+        id: ['00107832']
       }
       {
         name: 'Reflect Blows'
@@ -747,18 +855,21 @@ window.perkTrees = [
         req: [100]
         pos: [72, -198]
         deps: [6]
+        id: ['00105F33']
       }
     ]
   }
   {
     name: 'Block'
+    cname: 'block'
     perks: [
       {
         name: 'Shield Wall'
         levels: 5
-        desc: ['Blocking is 20% more effective.', 'Blocking is 40% more effective.', 'Blocking is 60% more effective.', 'Blocking is 80% more effective.', 'Blocking is 100% more effective.']
+        desc: ['Blocking is 20% more effective.', 'Blocking is 25% more effective.', 'Blocking is 30% more effective.', 'Blocking is 35% more effective.', 'Blocking is 40% more effective.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BCCAE', '00079355', '00079356', '00079357', '00079358']
       }
       {
         name: 'Deflect Arrows'
@@ -766,6 +877,7 @@ window.perkTrees = [
         req: [30]
         pos: [-103, -53]
         deps: [0]
+        id: ['00058F68']
       }
       {
         name: 'Quick Reflexes'
@@ -774,6 +886,7 @@ window.perkTrees = [
         pos: [-24, -70]
         captionOffset: [0, -13]
         deps: [0]
+        id: ['000D8C33']
       }
       {
         name: 'Power Bash'
@@ -781,6 +894,7 @@ window.perkTrees = [
         req: [30]
         pos: [83, -54]
         deps: [0]
+        id: ['00058F67']
       }
       {
         name: 'Elemental Protection'
@@ -788,6 +902,7 @@ window.perkTrees = [
         req: [50]
         pos: [-72, -131]
         deps: [1]
+        id: ['00058F69']
       }
       {
         name: 'Block Runner'
@@ -796,6 +911,7 @@ window.perkTrees = [
         pos: [-43, -149]
         captionOffset: [0, -13]
         deps: [4]
+        id: ['00106253']
       }
       {
         name: 'Deadly Bash'
@@ -803,6 +919,7 @@ window.perkTrees = [
         req: [50]
         pos: [79, -109]
         deps: [3]
+        id: ['0005F594']
       }
       {
         name: 'Disarming Bash'
@@ -810,6 +927,7 @@ window.perkTrees = [
         req: [70]
         pos: [60, -151]
         deps: [6]
+        id: ['00058F66']
       }
       {
         name: 'Shield Charge'
@@ -818,11 +936,13 @@ window.perkTrees = [
         pos: [1, -167]
         captionOffset: [0, -13]
         deps: [7]
+        id: ['00058F6A']
       }
     ]
   }
   {
     name: 'Two-Handed'
+    cname: 'twohanded'
     perks: [
       {
         name: 'Barbarian'
@@ -830,6 +950,7 @@ window.perkTrees = [
         desc: ['Two-Handed weapons do 20% more damage.', 'Two-Handed weapons do 40% more damage.', 'Two-Handed weapons do 60% more damage.', 'Two-Handed weapons do 80% more damage.', 'Two-Handed weapons do 100% more damage.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BABE8', '00079346', '00079347', '00079348', '00079349']
       }
       {
         name: 'Limbsplitter'
@@ -838,6 +959,7 @@ window.perkTrees = [
         req: [30, 60, 90]
         pos: [-41, -90]
         deps: [0]
+        id: ['000C5C05', '000C5C06', '000C5C07']
       }
       {
         name: "Champion's Stance"
@@ -845,6 +967,7 @@ window.perkTrees = [
         req: [20]
         pos: [3, -60]
         deps: [0]
+        id: ['00052D51']
       }
       {
         name: 'Deep Wounds'
@@ -853,6 +976,7 @@ window.perkTrees = [
         req: [30, 60, 90]
         pos: [43, -91]
         deps: [0]
+        id: ['0003AF83', '000C1E94', '000C1E95']
       }
       {
         name: 'Skullcrusher'
@@ -862,6 +986,7 @@ window.perkTrees = [
         pos: [74, -91]
         captionOffset: [0, -13]
         deps: [0]
+        id: ['0003AF84', '000C1E96', '000C1E97']
       }
       {
         name: 'Great Critical Charge'
@@ -869,6 +994,7 @@ window.perkTrees = [
         req: [50]
         pos: [-13, -126]
         deps: [2]
+        id: ['000CB407']
       }
       {
         name: 'Devastating Blow'
@@ -877,6 +1003,7 @@ window.perkTrees = [
         pos: [17, -127]
         captionOffset: [0, -13]
         deps: [2]
+        id: ['00052D52']
       }
       {
         name: 'Sweep'
@@ -884,6 +1011,7 @@ window.perkTrees = [
         req: [70]
         pos: [7, -189]
         deps: [5, 6]
+        id: ['0003AF9E']
       }
       {
         name: 'Warmaster'
@@ -892,11 +1020,13 @@ window.perkTrees = [
         pos: [8, -237]
         captionOffset: [0, -13]
         deps: [7]
+        id: ['0003AFA7']
       }
     ]
   }
   {
     name: 'One-Handed'
+    cname: 'onehanded'
     perks: [
       {
         name: 'Armsman'
@@ -904,6 +1034,7 @@ window.perkTrees = [
         desc: ['One-Handed weapons do 20% more damage.', 'One-Handed weapons do 40% more damage.', 'One-Handed weapons do 60% more damage.', 'One-Handed weapons do 80% more damage.', 'One-Handed weapons do 100% more damage.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BABE4', '00079343', '00079342', '00079344', '00079345']
       }
       {
         name: 'Hack and Slash'
@@ -912,6 +1043,7 @@ window.perkTrees = [
         req: [30, 60, 90]
         pos: [-45, -86]
         deps: [0]
+        id: ['0003FFFA', '000C3678', '000C3679']
       }
       {
         name: 'Fighting Stance'
@@ -919,6 +1051,7 @@ window.perkTrees = [
         req: [20]
         pos: [0, -56]
         deps: [0]
+        id: ['00052D50']
       }
       {
         name: 'Bone Breaker'
@@ -927,6 +1060,7 @@ window.perkTrees = [
         req: [30, 30, 30]
         pos: [23, -86]
         deps: [0]
+        id: ['0005F592', '000C1E92', '000C1E93']
       }
       {
         name: 'Bladesman'
@@ -936,6 +1070,7 @@ window.perkTrees = [
         pos: [46, -86]
         captionOffset: [0, -13]
         deps: [0]
+        id: ['0005F56F', '000C1E90', '000C1E91']
       }
       {
         name: 'Dual Flurry'
@@ -944,6 +1079,7 @@ window.perkTrees = [
         req: [30, 50]
         pos: [88, -40]
         deps: [0]
+        id: ['00106256', '00106257']
       }
       {
         name: 'Dual Savagery'
@@ -952,6 +1088,7 @@ window.perkTrees = [
         pos: [62, -163]
         captionOffset: [0, -13]
         deps: [5]
+        id: ['00106258']
       }
       {
         name: 'Savage Strike'
@@ -959,6 +1096,7 @@ window.perkTrees = [
         req: [50]
         pos: [-20, -122]
         deps: [2]
+        id: ['0003AF81']
       }
       {
         name: 'Critical Charge'
@@ -967,6 +1105,7 @@ window.perkTrees = [
         pos: [14, -122]
         captionOffset: [0, -13]
         deps: [2]
+        id: ['000CB406']
       }
       {
         name: 'Paralyzing Strike'
@@ -975,11 +1114,13 @@ window.perkTrees = [
         pos: [2, -216]
         captionOffset: [0, -13]
         deps: [7, 8]
+        id: ['0003AFA6']
       }
     ]
   }
   {
     name: 'Archery'
+    cname: 'marksman'
     perks: [
       {
         name: 'Overdraw'
@@ -987,6 +1128,7 @@ window.perkTrees = [
         desc: ['Bows do 20% more damage.', 'Bows do 40% more damage.', 'Bows do 60% more damage.', 'Bows do 80% more damage.', 'Bows do 100% more damage.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BABED', '0007934A', '0007934B', '0007934D', '00079354']
       }
       {
         name: 'Eagle Eye'
@@ -994,6 +1136,7 @@ window.perkTrees = [
         req: [30]
         pos: [-74, -54]
         deps: [0]
+        id: ['00058F61']
       }
       {
         name: 'Critical Shot'
@@ -1002,6 +1145,7 @@ window.perkTrees = [
         req: [30, 60, 90]
         pos: [-15, -69]
         deps: [0]
+        id: ['00105F1C', '00105F1E', '00105F1F']
       }
       {
         name: 'Steady Hand'
@@ -1010,6 +1154,7 @@ window.perkTrees = [
         req: [40, 60]
         pos: [-49, -68]
         deps: [1]
+        id: ['00103ADA', '00103ADB']
       }
       {
         name: 'Power Shot'
@@ -1017,6 +1162,7 @@ window.perkTrees = [
         req: [50]
         pos: [-92, -97]
         deps: [1]
+        id: ['00058F62']
       }
       {
         name: 'Quick Shot'
@@ -1024,6 +1170,7 @@ window.perkTrees = [
         req: [70]
         pos: [-91, -151]
         deps: [4]
+        id: ['00105F19']
       }
       {
         name: "Hunter's Discipline"
@@ -1031,6 +1178,7 @@ window.perkTrees = [
         req: [50]
         pos: [-39, -121]
         deps: [2]
+        id: ['00051B12']
       }
       {
         name: 'Ranger'
@@ -1038,6 +1186,7 @@ window.perkTrees = [
         req: [60]
         pos: [-47, -141]
         deps: [6]
+        id: ['00058F63']
       }
       {
         name: 'Bullseye'
@@ -1045,11 +1194,13 @@ window.perkTrees = [
         req: [100]
         pos: [-65, -166]
         deps: [5, 7]
+        id: ['00058F64']
       }
     ]
   }
   {
     name: 'Light Armor'
+    cname: 'lightarmor'
     perks: [
       {
         name: 'Agile Defender'
@@ -1057,6 +1208,7 @@ window.perkTrees = [
         desc: ['Increase armor rating for Light armor by 20%.', 'Increase armor rating for Light armor by 40%.', 'Increase armor rating for Light armor by 60%.', 'Increase armor rating for Light armor by 80%.', 'Increase armor rating for Light armor by 100%.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BE123', '00079376', '00079389', '00079391', '00079392']
       }
       {
         name: 'Custom Fit'
@@ -1064,6 +1216,7 @@ window.perkTrees = [
         req: [30]
         pos: [-15, -62]
         deps: [0]
+        id: ['00051B1B']
       }
       {
         name: 'Unhindered'
@@ -1071,6 +1224,7 @@ window.perkTrees = [
         req: [50]
         pos: [-47, -110]
         deps: [1]
+        id: ['00051B1C']
       }
       {
         name: 'Matching Set'
@@ -1078,6 +1232,7 @@ window.perkTrees = [
         req: [70]
         pos: [8, -153]
         deps: [1]
+        id: ['00051B17']
       }
       {
         name: 'Wind Walker'
@@ -1085,6 +1240,7 @@ window.perkTrees = [
         req: [60]
         pos: [-42, -143]
         deps: [2]
+        id: ['00105F22']
       }
       {
         name: 'Deft Movement'
@@ -1093,18 +1249,21 @@ window.perkTrees = [
         pos: [-15, -170]
         captionOffset: [0, -13]
         deps: [3, 4]
+        id: ['00107831']
       }
     ]
   }
   {
     name: 'Sneak'
+    cname: 'sneak'
     perks: [
       {
         name: 'Stealth'
         levels: 5
-        desc: ['You are 20% harder to detect when sneaking.', 'You are 40% harder to detect when sneaking.', 'You are 60% harder to detect when sneaking.', 'You are 80% harder to detect when sneaking.', 'You are 100% harder to detect when sneaking.']
+        desc: ['You are 20% harder to detect when sneaking.', 'You are 25% harder to detect when sneaking.', 'You are 30% harder to detect when sneaking.', 'You are 35% harder to detect when sneaking.', 'You are 40% harder to detect when sneaking.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BE126', '000C07C6', '000C07C7', '000C07C8', '000C07C9']
       }
       {
         name: 'Backstab'
@@ -1112,6 +1271,7 @@ window.perkTrees = [
         req: [30]
         pos: [43, -55]
         deps: [0]
+        id: ['00058210']
       }
       {
         name: 'Deadly Aim'
@@ -1119,6 +1279,7 @@ window.perkTrees = [
         req: [40]
         pos: [48, -112]
         deps: [1]
+        id: ['001036F0']
       }
       {
         name: "Assassin's Blade"
@@ -1126,6 +1287,7 @@ window.perkTrees = [
         req: [50]
         pos: [27, -121]
         deps: [2]
+        id: ['00058211']
       }
       {
         name: 'Muffled Movement'
@@ -1133,6 +1295,7 @@ window.perkTrees = [
         req: [30]
         pos: [-54, -56]
         deps: [0]
+        id: ['00058213']
       }
       {
         name: 'Light Foot'
@@ -1140,6 +1303,7 @@ window.perkTrees = [
         req: [40]
         pos: [-32, -113]
         deps: [4]
+        id: ['0005820C']
       }
       {
         name: 'Silent Roll'
@@ -1147,6 +1311,7 @@ window.perkTrees = [
         req: [50]
         pos: [-9, -134]
         deps: [5]
+        id: ['00105F23']
       }
       {
         name: 'Silence'
@@ -1154,6 +1319,7 @@ window.perkTrees = [
         req: [70]
         pos: [21, -162]
         deps: [6]
+        id: ['00105F24']
       }
       {
         name: 'Shadow Warrior'
@@ -1161,16 +1327,19 @@ window.perkTrees = [
         req: [100]
         pos: [68, -176]
         deps: [7]
+        id: ['00058214']
       }
     ]
   }
   {
     name: 'Lockpicking'
+    cname: 'lockpicking'
     perks: [
       {
         name: 'Novice Locks'
         desc: ['Novice locks are much easier to pick.']
         pos: [0, 0]
+        id: ['000F392A']
       }
       {
         name: 'Apprentice Locks'
@@ -1178,6 +1347,7 @@ window.perkTrees = [
         req: [25]
         pos: [31, -57]
         deps: [0]
+        id: ['000BE125']
       }
       {
         name: 'Quick Hands'
@@ -1185,6 +1355,7 @@ window.perkTrees = [
         req: [40]
         pos: [-7, -87]
         deps: [1]
+        id: ['00106259']
       }
       {
         name: 'Wax Key'
@@ -1192,6 +1363,7 @@ window.perkTrees = [
         req: [50]
         pos: [-45, -106]
         deps: [2]
+        id: ['00107830']
       }
       {
         name: 'Adept Locks'
@@ -1199,6 +1371,7 @@ window.perkTrees = [
         req: [50]
         pos: [55, -111]
         deps: [1]
+        id: ['000C3680']
       }
       {
         name: 'Golden Touch'
@@ -1206,6 +1379,7 @@ window.perkTrees = [
         req: [60]
         pos: [13, -124]
         deps: [4]
+        id: ['0005820A']
       }
       {
         name: 'Treasure Hunter'
@@ -1213,6 +1387,7 @@ window.perkTrees = [
         req: [70]
         pos: [-15, -145]
         deps: [5]
+        id: ['00105F26']
       }
       {
         name: 'Expert Locks'
@@ -1220,6 +1395,7 @@ window.perkTrees = [
         req: [75]
         pos: [59, -143]
         deps: [4]
+        id: ['000C3681']
       }
       {
         name: 'Locksmith'
@@ -1227,6 +1403,7 @@ window.perkTrees = [
         req: [80]
         pos: [22, -162]
         deps: [7]
+        id: ['00058208']
       }
       {
         name: 'Unbreakable'
@@ -1234,6 +1411,7 @@ window.perkTrees = [
         req: [100]
         pos: [0, -177]
         deps: [8]
+        id: ['00058209']
       }
       {
         name: 'Master Locks'
@@ -1241,11 +1419,13 @@ window.perkTrees = [
         req: [100]
         pos: [67, -193]
         deps: [7]
+        id: ['000C3682']
       }
     ]
   }
   {
     name: 'Pickpocket'
+    cname: 'pickpocket'
     perks: [
       {
         name: 'Light Fingers'
@@ -1253,6 +1433,7 @@ window.perkTrees = [
         desc: ['Pickpocketing bonus of 20%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 40%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 60%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 80%. Item weight and value reduce pickpocketing odds.', 'Pickpocketing bonus of 100%. Item weight and value reduce pickpocketing odds.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BE124', '00018E6A', '00018E6B', '00018E6C', '00018E6D']
       }
       {
         name: 'Night Thief'
@@ -1260,6 +1441,7 @@ window.perkTrees = [
         req: [30]
         pos: [25, -50]
         deps: [0]
+        id: ['00058202']
       }
       {
         name: 'Poisoned'
@@ -1267,6 +1449,7 @@ window.perkTrees = [
         req: [40]
         pos: [13, -106]
         deps: [1]
+        id: ['00105F28']
       }
       {
         name: 'Cutpurse'
@@ -1274,6 +1457,7 @@ window.perkTrees = [
         req: [40]
         pos: [44, -107]
         deps: [1]
+        id: ['00058204']
       }
       {
         name: 'Extra Pockets'
@@ -1281,6 +1465,7 @@ window.perkTrees = [
         req: [50]
         pos: [72, -105]
         deps: [1]
+        id: ['00096590']
       }
       {
         name: 'Keymaster'
@@ -1288,6 +1473,7 @@ window.perkTrees = [
         req: [60]
         pos: [21, -128]
         deps: [3]
+        id: ['000D79A0']
       }
       {
         name: 'Misdirection'
@@ -1295,6 +1481,7 @@ window.perkTrees = [
         req: [70]
         pos: [55, -157]
         deps: [3]
+        id: ['00058201']
       }
       {
         name: 'Perfect Touch'
@@ -1302,18 +1489,21 @@ window.perkTrees = [
         req: [100]
         pos: [72, -162]
         deps: [6]
+        id: ['00058205']
       }
     ]
   }
   {
     name: 'Speech'
+    cname: 'speechcraft'
     perks: [
       {
         name: 'Haggling'
         levels: 5
-        desc: ['Buying and selling prices are 10% better.', 'Buying and selling prices are 20% better.', 'Buying and selling prices are 30% better.', 'Buying and selling prices are 40% better.', 'Buying and selling prices are 50% better.']
+        desc: ['Buying and selling prices are 10% better.', 'Buying and selling prices are 15% better.', 'Buying and selling prices are 20% better.', 'Buying and selling prices are 25% better.', 'Buying and selling prices are 30% better.']
         req: [0, 20, 40, 60, 80]
         pos: [0, 0]
+        id: ['000BE128', '000C07CE', '000C07CF', '000C07D0', '000C07D1']
       }
       {
         name: 'Allure'
@@ -1321,6 +1511,7 @@ window.perkTrees = [
         req: [30]
         pos: [14, -55]
         deps: [0]
+        id: ['00058F75']
       }
       {
         name: 'Bribery'
@@ -1328,6 +1519,7 @@ window.perkTrees = [
         req: [30]
         pos: [60, -56]
         deps: [0]
+        id: ['00058F72']
       }
       {
         name: 'Persuasion'
@@ -1335,6 +1527,7 @@ window.perkTrees = [
         req: [50]
         pos: [83, -111]
         deps: [2]
+        id: ['001090A2']
       }
       {
         name: 'Intimidation'
@@ -1342,6 +1535,7 @@ window.perkTrees = [
         req: [70]
         pos: [95, -143]
         deps: [3]
+        id: ['00105F29']
       }
       {
         name: 'Merchant'
@@ -1349,6 +1543,7 @@ window.perkTrees = [
         req: [50]
         pos: [5, -111]
         deps: [1]
+        id: ['00058F7A']
       }
       {
         name: 'Investor'
@@ -1356,6 +1551,7 @@ window.perkTrees = [
         req: [70]
         pos: [-4, -142]
         deps: [5]
+        id: ['00058F7B']
       }
       {
         name: 'Fence'
@@ -1363,6 +1559,7 @@ window.perkTrees = [
         req: [90]
         pos: [-12, -169]
         deps: [6]
+        id: ['00058F79']
       }
       {
         name: 'Master Trader'
@@ -1370,6 +1567,7 @@ window.perkTrees = [
         req: [100]
         pos: [56, -177]
         deps: [7]
+        id: ['001090A5']
       }
     ]
   }

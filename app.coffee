@@ -126,10 +126,10 @@ readActiveData = (str) ->
         j++
 
 
-getPerkDisplayName = (perk) ->
+getPerkDisplayName = (perk, level = 0) ->
   maxLevels = perk.levels || 1
   return perk.name if maxLevels == 1
-  activeLevel = getPerkLevel(perk)
+  activeLevel = if level > 0 then level else getPerkLevel(perk)
   "#{perk.name} (#{activeLevel}/#{maxLevels})"
 
 
@@ -380,6 +380,43 @@ redraw = ->
     $('.clear-perks').fadeIn('fast')
 
 
+getResetCode = () ->
+  result = []
+  for perkTree in perkTrees
+    result.push "; Remove all perks from '#{perkTree.name}'"
+    perks = _.clone(perkTree.perks)
+    perks.reverse()
+    for perk in perks
+      if perk.id
+        r = _.clone(perk.id)
+        r.reverse()
+        level = perk.levels || 1
+        for id in r
+          result.push "player.removeperk #{id} ; #{getPerkDisplayName(perk, level--)}"
+    result.push ""
+  return result.join("\r\n")
+
+getAddPerksCode = () ->
+  result = []
+  result.push "player.setlevel #{Math.max(1, countActivePerks())}"
+
+  for perkTree in perkTrees
+    perkInfos = getPerkInfos(perkTree)
+    result.push ""
+    result.push "; Add perks to '#{perkTree.name}'"
+    result.push "player.setav #{perkTree.cname} #{Math.max(15, perkInfos.req)}"
+    for perk in perkTree.perks
+      if perk.id
+        activeLevel = getPerkLevel(perk)
+        level = 1
+        for id in perk.id
+          if level <= activeLevel
+            result.push "player.addperk #{id} ; #{getPerkDisplayName(perk, level++)}"
+          else
+            break
+  return result.join("\r\n")
+
+
 downHandler = (e) ->
   e.originalEvent.preventDefault()
   offset = $canvas.offset()
@@ -470,6 +507,13 @@ $ ->
     if confirm('Really clear all perks?')
       activePerkLevels = {}
       workspace.navigate "t/#{perkTreeId(activePerkTreeView.model)}/#{activeData()}", true
+
+  $('#download-reset').click ->
+    window.open("data:application/octet-stream,#{encodeURI(getResetCode())}")
+  $('#download-addperks').click ->
+    window.open("data:application/octet-stream,#{encodeURI(getAddPerksCode())}")
+  $('#help').click ->
+    window.open("respec.html")
 
   $canvas
     .mousemove(moveHandler)
