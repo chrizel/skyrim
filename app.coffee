@@ -472,7 +472,7 @@ class Workspace extends Backbone.Router
     't/:tree':        'tree'
     '':               'tree'
 
-  tree: (tree = '0', data = '') ->
+  tree: (tree = '1', data = '') ->
     i = Math.min(Math.max(0, parseInt(tree, 10)), perkTrees.length-1)
     activePerkTreeView.model = perkTrees[i]
     if data != ''
@@ -489,17 +489,20 @@ $ ->
   perkTreeViews = []
   cols = 3
   padding = 5
-  i = 0
-  x = padding
-  y = padding
   width = 100
   height = 127
+  x = padding + (width + padding) * 2
+  y = padding + (height + padding) * 5
+  i = 0
   activePerkTreeView = new PerkTreeView(null, [320, padding, 675, 787], 2.8)
   for perkTree in perkTrees
     perkTreeViews.push new PerkTreeView(perkTree, [x, y, width, height], 0.4)
     i++
     x += width + padding
-    if (i % cols) == 0
+    if i == 1
+      x = padding
+      y = padding
+    else if ((i - 1) % cols) == 0
       x = padding
       y += height + padding
 

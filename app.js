@@ -578,7 +578,7 @@
 
     Workspace.prototype.tree = function(tree, data) {
       var i;
-      if (tree == null) tree = '0';
+      if (tree == null) tree = '1';
       if (data == null) data = '';
       i = Math.min(Math.max(0, parseInt(tree, 10)), perkTrees.length - 1);
       activePerkTreeView.model = perkTrees[i];
@@ -600,18 +600,21 @@
     perkTreeViews = [];
     cols = 3;
     padding = 5;
-    i = 0;
-    x = padding;
-    y = padding;
     width = 100;
     height = 127;
+    x = padding + (width + padding) * 2;
+    y = padding + (height + padding) * 5;
+    i = 0;
     activePerkTreeView = new PerkTreeView(null, [320, padding, 675, 787], 2.8);
     for (_i = 0, _len = perkTrees.length; _i < _len; _i++) {
       perkTree = perkTrees[_i];
       perkTreeViews.push(new PerkTreeView(perkTree, [x, y, width, height], 0.4));
       i++;
       x += width + padding;
-      if ((i % cols) === 0) {
+      if (i === 1) {
+        x = padding;
+        y = padding;
+      } else if (((i - 1) % cols) === 0) {
         x = padding;
         y += height + padding;
       }
