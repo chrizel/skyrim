@@ -21,6 +21,11 @@ hoveredPerk = null
 activePerkTreeView = null
 workspace = null
 
+TREE_COLS = 3
+TREE_PADDING = 5
+TREE_WIDTH = 100
+TREE_HEIGHT = 127
+
 activePerkLevels = {}
 
 perkTrees = window.perkTrees
@@ -217,8 +222,8 @@ class PerkTreeView
     ctx.save()
 
     isActivePerkTree = activePerkTreeView && activePerkTreeView.model == @model
-    
-    ctx.fillStyle = if isActivePerkTree then 'rgb(0,0,0)' else 'rgb(30,30,30)'
+
+    ctx.fillStyle = if isActivePerkTree then 'rgba(0,0,0,0.5)' else 'rgba(30,30,30,0.5)'
     ctx.fillRect(@frame[0], @frame[1], @frame[2], @frame[3])
 
     if not @model
@@ -355,9 +360,29 @@ redraw = ->
   ctx.fillStyle = 'rgb(20,20,20)'
   ctx.fillRect(0, 0, $canvas.width(), $canvas.height())
 
+  i = 0
   for perkTreeView in perkTreeViews
+    # colored borders...
+    if 0 < i < 7
+        ctx.fillStyle = 'rgba(20,83,112,0.5)'
+    else if 6 < i < 13
+        ctx.fillStyle = 'rgba(102,63,32,0.5)'
+    else
+        ctx.fillStyle = 'rgba(35,81,45,0.5)'
+    ctx.fillRect(perkTreeView.frame[0]-1,
+                 perkTreeView.frame[1]-1,
+                 perkTreeView.frame[2]+2,
+                 perkTreeView.frame[3]+2)
     perkTreeView.draw ctx, false, true
+    i++
+
   if activePerkTreeView
+    ctx.fillStyle = 'rgb(0,0,0)'
+    ctx.fillRect(activePerkTreeView.frame[0]-1,
+                 activePerkTreeView.frame[1]-1,
+                 activePerkTreeView.frame[2]+2,
+                 activePerkTreeView.frame[3]+2)
+
     activePerkTreeView.draw ctx, true, false
 
     if activePerkTreeView.model
@@ -487,24 +512,20 @@ $ ->
     return
 
   perkTreeViews = []
-  cols = 3
-  padding = 5
-  width = 100
-  height = 127
-  x = padding + (width + padding) * 2
-  y = padding + (height + padding) * 5
+  x = TREE_PADDING + (TREE_WIDTH + TREE_PADDING) * 2
+  y = TREE_PADDING + (TREE_HEIGHT + TREE_PADDING) * 5
   i = 0
-  activePerkTreeView = new PerkTreeView(null, [320, padding, 675, 787], 2.8)
+  activePerkTreeView = new PerkTreeView(null, [320, TREE_PADDING, 675, 787], 2.8)
   for perkTree in perkTrees
-    perkTreeViews.push new PerkTreeView(perkTree, [x, y, width, height], 0.4)
+    perkTreeViews.push new PerkTreeView(perkTree, [x, y, TREE_WIDTH, TREE_HEIGHT], 0.4)
     i++
-    x += width + padding
+    x += TREE_WIDTH + TREE_PADDING
     if i == 1
-      x = padding
-      y = padding
-    else if ((i - 1) % cols) == 0
-      x = padding
-      y += height + padding
+      x = TREE_PADDING
+      y = TREE_PADDING
+    else if ((i - 1) % TREE_COLS) == 0
+      x = TREE_PADDING
+      y += TREE_HEIGHT + TREE_PADDING
 
   $('.clear-perks').click ->
     if confirm('Really clear all perks?')

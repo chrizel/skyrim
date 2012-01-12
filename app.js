@@ -18,7 +18,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-  var $canvas, PerkTreeView, Workspace, activeData, activePerkLevels, activePerkTreeView, changePerkLevel, countActivePerks, downHandler, forEachChildOfPerk, forEachParentOfPerk, getAddPerksCode, getPerkDisplayName, getPerkInfos, getPerkLevel, getResetCode, hoveredPerk, isPerkChildOfParentWithIndex, moveHandler, perkCircleRadius, perkId, perkTreeId, perkTreeViews, perkTrees, readActiveData, redraw, setCursor, workspace;
+  var $canvas, PerkTreeView, TREE_COLS, TREE_HEIGHT, TREE_PADDING, TREE_WIDTH, Workspace, activeData, activePerkLevels, activePerkTreeView, changePerkLevel, countActivePerks, downHandler, forEachChildOfPerk, forEachParentOfPerk, getAddPerksCode, getPerkDisplayName, getPerkInfos, getPerkLevel, getResetCode, hoveredPerk, isPerkChildOfParentWithIndex, moveHandler, perkCircleRadius, perkId, perkTreeId, perkTreeViews, perkTrees, readActiveData, redraw, setCursor, workspace;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
   $canvas = null;
@@ -30,6 +30,14 @@
   activePerkTreeView = null;
 
   workspace = null;
+
+  TREE_COLS = 3;
+
+  TREE_PADDING = 5;
+
+  TREE_WIDTH = 100;
+
+  TREE_HEIGHT = 127;
 
   activePerkLevels = {};
 
@@ -288,7 +296,7 @@
       var activeLevel, captionOffset, connected, dep, depPerk, displayName, isActivePerkTree, level, maxLevels, perk, perkInfos, perkName, radius, root, t, w, _i, _j, _k, _len, _len2, _len3, _ref, _ref2, _ref3;
       ctx.save();
       isActivePerkTree = activePerkTreeView && activePerkTreeView.model === this.model;
-      ctx.fillStyle = isActivePerkTree ? 'rgb(0,0,0)' : 'rgb(30,30,30)';
+      ctx.fillStyle = isActivePerkTree ? 'rgba(0,0,0,0.5)' : 'rgba(30,30,30,0.5)';
       ctx.fillRect(this.frame[0], this.frame[1], this.frame[2], this.frame[3]);
       if (!this.model) {
         ctx.restore();
@@ -407,17 +415,29 @@
   })();
 
   redraw = function() {
-    var activePerks, ctx, perkInfos, perkTreeView, _i, _len;
+    var activePerks, ctx, i, perkInfos, perkTreeView, _i, _len;
     if (!$canvas) return;
     ctx = $canvas[0].getContext("2d");
     ctx.save();
     ctx.fillStyle = 'rgb(20,20,20)';
     ctx.fillRect(0, 0, $canvas.width(), $canvas.height());
+    i = 0;
     for (_i = 0, _len = perkTreeViews.length; _i < _len; _i++) {
       perkTreeView = perkTreeViews[_i];
+      if ((0 < i && i < 7)) {
+        ctx.fillStyle = 'rgba(20,83,112,0.5)';
+      } else if ((6 < i && i < 13)) {
+        ctx.fillStyle = 'rgba(102,63,32,0.5)';
+      } else {
+        ctx.fillStyle = 'rgba(35,81,45,0.5)';
+      }
+      ctx.fillRect(perkTreeView.frame[0] - 1, perkTreeView.frame[1] - 1, perkTreeView.frame[2] + 2, perkTreeView.frame[3] + 2);
       perkTreeView.draw(ctx, false, true);
+      i++;
     }
     if (activePerkTreeView) {
+      ctx.fillStyle = 'rgb(0,0,0)';
+      ctx.fillRect(activePerkTreeView.frame[0] - 1, activePerkTreeView.frame[1] - 1, activePerkTreeView.frame[2] + 2, activePerkTreeView.frame[3] + 2);
       activePerkTreeView.draw(ctx, true, false);
       if (activePerkTreeView.model) {
         perkInfos = getPerkInfos(activePerkTreeView.model);
@@ -591,32 +611,28 @@
   })();
 
   $(function() {
-    var cols, height, i, padding, perkTree, width, x, y, _i, _len;
+    var i, perkTree, x, y, _i, _len;
     $canvas = $('#canvas');
     if (!$canvas[0].getContext) {
       $canvas = null;
       return;
     }
     perkTreeViews = [];
-    cols = 3;
-    padding = 5;
-    width = 100;
-    height = 127;
-    x = padding + (width + padding) * 2;
-    y = padding + (height + padding) * 5;
+    x = TREE_PADDING + (TREE_WIDTH + TREE_PADDING) * 2;
+    y = TREE_PADDING + (TREE_HEIGHT + TREE_PADDING) * 5;
     i = 0;
-    activePerkTreeView = new PerkTreeView(null, [320, padding, 675, 787], 2.8);
+    activePerkTreeView = new PerkTreeView(null, [320, TREE_PADDING, 675, 787], 2.8);
     for (_i = 0, _len = perkTrees.length; _i < _len; _i++) {
       perkTree = perkTrees[_i];
-      perkTreeViews.push(new PerkTreeView(perkTree, [x, y, width, height], 0.4));
+      perkTreeViews.push(new PerkTreeView(perkTree, [x, y, TREE_WIDTH, TREE_HEIGHT], 0.4));
       i++;
-      x += width + padding;
+      x += TREE_WIDTH + TREE_PADDING;
       if (i === 1) {
-        x = padding;
-        y = padding;
-      } else if (((i - 1) % cols) === 0) {
-        x = padding;
-        y += height + padding;
+        x = TREE_PADDING;
+        y = TREE_PADDING;
+      } else if (((i - 1) % TREE_COLS) === 0) {
+        x = TREE_PADDING;
+        y += TREE_HEIGHT + TREE_PADDING;
       }
     }
     $('.clear-perks').click(function() {
