@@ -1057,7 +1057,7 @@ window.perkTrees = [
         name: 'Bone Breaker'
         levels: 3
         desc: ['Attacks with maces ignore 25% of armor.', 'Attacks with maces ignore 50% of armor.', 'Attacks with maces ignore 75% of armor.']
-        req: [30, 30, 30]
+        req: [30, 60, 90]
         pos: [23, -86]
         deps: [0]
         id: ['0005F592', '000C1E92', '000C1E93']
