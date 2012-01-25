@@ -1,25 +1,26 @@
+
+/*
+Skyrim Perk Calculator
+Copyright (C) 2011  Christian Zeller <chrizel@gmail.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 (function() {
-
-  /*
-  Skyrim Perk Calculator
-  Copyright (C) 2011  Christian Zeller <chrizel@gmail.com>
-  
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  */
-
-  var $canvas, PerkTreeView, TREE_COLS, TREE_HEIGHT, TREE_PADDING, TREE_WIDTH, Workspace, activeData, activePerkLevels, activePerkTreeView, changePerkLevel, countActivePerks, downHandler, forEachChildOfPerk, forEachParentOfPerk, getAddPerksCode, getPerkDisplayName, getPerkInfos, getPerkLevel, getResetCode, hoveredPerk, isPerkChildOfParentWithIndex, moveHandler, perkCircleRadius, perkId, perkTreeId, perkTreeViews, perkTrees, readActiveData, redraw, setCursor, workspace;
-  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+  var $canvas, PerkTreeView, TREE_COLS, TREE_HEIGHT, TREE_PADDING, TREE_WIDTH, Workspace, activeData, activePerkLevels, activePerkTreeView, changePerkLevel, countActivePerks, downHandler, forEachChildOfPerk, forEachParentOfPerk, getAddPerksCode, getPerkDisplayName, getPerkInfos, getPerkLevel, getResetCode, hoveredPerk, isPerkChildOfParentWithIndex, moveHandler, perkCircleRadius, perkId, perkTreeId, perkTreeViews, perkTrees, readActiveData, redraw, setCursor, workspace,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
   $canvas = null;
 
@@ -73,44 +74,59 @@
     return '';
   };
 
-  forEachParentOfPerk = function(perk, func) {
-    
-  if (perk && perk.deps) {
-    for (var i = 0; i < perkTrees.length; i++)
-      for (var j = 0; j < perkTrees[i].perks.length; j++)
-        if (perkTrees[i].perks[j] == perk) {
-          for (var k = 0; k < perk.deps.length; k++)
-            func(perkTrees[i].perks[perk.deps[k]]);
-          return;
+  forEachParentOfPerk = function(thePerk, func) {
+    var dep, perk, perkTree, _i, _j, _k, _len, _len2, _len3, _ref, _ref2;
+    if (thePerk && thePerk.deps) {
+      for (_i = 0, _len = perkTrees.length; _i < _len; _i++) {
+        perkTree = perkTrees[_i];
+        _ref = perkTree.perks;
+        for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
+          perk = _ref[_j];
+          if (perk === thePerk) {
+            _ref2 = perk.deps;
+            for (_k = 0, _len3 = _ref2.length; _k < _len3; _k++) {
+              dep = _ref2[_k];
+              func(perkTree.perks[dep]);
+            }
+            return;
+          }
         }
-  }
-  ;
+      }
+    }
   };
 
   isPerkChildOfParentWithIndex = function(perk, parentIndex) {
-    
-  if (perk && perk.deps)
-      for (var i = 0; i < perk.deps.length; i++)
-          if (perk.deps[i] == parentIndex)
-              return true;
-  ;    return false;
+    var dep, _i, _len, _ref;
+    if (perk && perk.deps) {
+      _ref = perk.deps;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        dep = _ref[_i];
+        if (dep === parentIndex) return true;
+      }
+    }
+    return false;
   };
 
-  forEachChildOfPerk = function(perk, func) {
-    
-  for (var i = 0; i < perkTrees.length; i++)
-    for (var j = 0; j < perkTrees[i].perks.length; j++)
-      if (perkTrees[i].perks[j] == perk) {
-        for (var k = 0; k < perkTrees[i].perks.length; k++) {
-          var p = perkTrees[i].perks[k];
-          if (isPerkChildOfParentWithIndex(p, j)) {
-            forEachChildOfPerk(p, func);
-            func(p);
+  forEachChildOfPerk = function(thePerk, func) {
+    var i, perk, perkTree, _i, _j, _len, _len2, _len3, _ref, _ref2;
+    for (_i = 0, _len = perkTrees.length; _i < _len; _i++) {
+      perkTree = perkTrees[_i];
+      _ref = perkTree.perks;
+      for (i = 0, _len2 = _ref.length; i < _len2; i++) {
+        perk = _ref[i];
+        if (perk === thePerk) {
+          _ref2 = perkTree.perks;
+          for (_j = 0, _len3 = _ref2.length; _j < _len3; _j++) {
+            perk = _ref2[_j];
+            if (isPerkChildOfParentWithIndex(perk, i)) {
+              forEachChildOfPerk(perk, func);
+              func(perk);
+            }
           }
+          return;
         }
-        return;
       }
-  ;
+    }
   };
 
   getPerkLevel = function(perk) {
@@ -582,9 +598,9 @@
     }
   };
 
-  Workspace = (function() {
+  Workspace = (function(_super) {
 
-    __extends(Workspace, Backbone.Router);
+    __extends(Workspace, _super);
 
     function Workspace() {
       Workspace.__super__.constructor.apply(this, arguments);
@@ -608,7 +624,7 @@
 
     return Workspace;
 
-  })();
+  })(Backbone.Router);
 
   $(function() {
     var i, perkTree, x, y, _i, _len;

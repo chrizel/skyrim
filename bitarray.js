@@ -1,3 +1,4 @@
+(function() {
 
   window.BitArray = (function() {
 
@@ -70,3 +71,5 @@
     return BitArray;
 
   })();
+
+}).call(this);

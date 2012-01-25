@@ -1,3 +1,4 @@
+(function() {
 
   window.perkTrees = [
     {
@@ -1394,3 +1395,5 @@
       ]
     }
   ];
+
+}).call(this);

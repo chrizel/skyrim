@@ -52,46 +52,36 @@ perkId = (perk) ->
   return ''
 
 
-forEachParentOfPerk = (perk, func) ->
-  `
-  if (perk && perk.deps) {
-    for (var i = 0; i < perkTrees.length; i++)
-      for (var j = 0; j < perkTrees[i].perks.length; j++)
-        if (perkTrees[i].perks[j] == perk) {
-          for (var k = 0; k < perk.deps.length; k++)
-            func(perkTrees[i].perks[perk.deps[k]]);
-          return;
-        }
-  }
-  `
+forEachParentOfPerk = (thePerk, func) ->
+  if thePerk and thePerk.deps
+    for perkTree in perkTrees
+      for perk in perkTree.perks
+        if perk == thePerk
+          for dep in perk.deps
+            func(perkTree.perks[dep])
+          return
   return
 
+
 isPerkChildOfParentWithIndex = (perk, parentIndex) ->
-  `
-  if (perk && perk.deps)
-      for (var i = 0; i < perk.deps.length; i++)
-          if (perk.deps[i] == parentIndex)
-              return true;
-  `
+  if perk and perk.deps
+    for dep in perk.deps
+      if dep == parentIndex
+        return true
   return false
 
 
-forEachChildOfPerk = (perk, func) ->
-  `
-  for (var i = 0; i < perkTrees.length; i++)
-    for (var j = 0; j < perkTrees[i].perks.length; j++)
-      if (perkTrees[i].perks[j] == perk) {
-        for (var k = 0; k < perkTrees[i].perks.length; k++) {
-          var p = perkTrees[i].perks[k];
-          if (isPerkChildOfParentWithIndex(p, j)) {
-            forEachChildOfPerk(p, func);
-            func(p);
-          }
-        }
-        return;
-      }
-  `
+forEachChildOfPerk = (thePerk, func) ->
+  for perkTree in perkTrees
+    for perk, i in perkTree.perks
+      if perk == thePerk
+        for perk in perkTree.perks
+          if isPerkChildOfParentWithIndex(perk, i)
+            forEachChildOfPerk(perk, func)
+            func(perk)
+        return
   return
+
 
 getPerkLevel = (perk) ->
   id = perkId perk
