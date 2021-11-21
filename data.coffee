@@ -935,7 +935,7 @@ window.perkTrees = [
         req: [100]
         pos: [1, -167]
         captionOffset: [0, -13]
-        deps: [7]
+        deps: [7, 5]
         id: ['00058F6A']
       }
     ]
