@@ -2,61 +2,31 @@
 <html>
     <head>
         <title>Skyrim Perk Calculator And Respec Tool</title>
-        <script type="text/javascript" src="jquery.js"></script>
-        <script type="text/javascript" src="underscore.js"></script>
-        <script type="text/javascript" src="backbone.js"></script>
-        <script type="text/javascript" src="data.js?5"></script>
-        <script type="text/javascript" src="bitarray.js"></script>
-        <script type="text/javascript" src="app.js?3"></script>
-        <link rel="stylesheet" type="text/css" href="style.css?1">
-
-        <script type="text/javascript">
-
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-27182295-1']);
-          _gaq.push(['_trackPageview']);
-
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-
-        </script>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <script type="module" src="build/app.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-      <h1>Skyrim Perk Calculator And Respec Tool</h1>
-      <a href="http://github.com/chrizel/skyrim"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/4c7dc970b89fd04b81c8e221ba88ff99a06c6b61/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub"></a>
-      <!--
-      <div class="info">
-        <b>New!</b> Now you can download respec scripts to respec your character to the perks you set with this tool. <a href="respec.html">Click here</a> for more information.
-      </div>
-      -->
+      <h1>Skyrim Perk Calculator and Respec Tool</h1>
       <canvas id="canvas" width="1000" height="800"></canvas>
       <br />
       <div class="toolbar">
-        <button id="download-addperks">Download "addperks" script</button>
-        <button id="download-reset">Download "reset" script</button>
+        <button id="download-addperks">Download "addperks" Script</button>
+        <button id="download-reset">Download "reset" Script</button>
         <button id="help">Help</button>
-        <div class="caption">Active perks:</div><div id="active-perks">0</div>
-        <button class="clear-perks">Clear all</button>
+        <div class="caption">Active Perks:</div><div id="active-perks">0</div>
+        <button id="clear-perks">Clear All</button>
       </div>
       <div class="footer">
-      If you'd like to support my work...<br />
-      <br />
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="PEJ3D7TFD3KEJ">
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-      <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
-      </form>
-
-      <br />
-      Feedback? You can contact me at <script type="text/javascript">document.write('<a href="' + 'mail' + 'to:' + 'chri' + 'zel' + '@' + 'g' + 'mail' + '.com">' + 'chri' + 'zel' + '@' + 'g' + 'mail' + '.com' + '</a>');</script><br />
-      Copyright &copy; 2012 by Christian Zeller<br />
-      <br />
-      <br />
+      <a href="https://github.com/chrizel/skyrim">GitHub Project</a>
+      <p>
+      Copyright &copy; 2022 by Christian Zeller
+      </p>
+      <p>
       Skyrim is a registered trademark of <a href="http://www.bethsoft.com/" target="_blank">Bethesda Softworks</a>.
+      </p>
       </div>
     </body>
 </html>
