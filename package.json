@@ -7,10 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp static/* build/",
     "test": "jest",
     "test:dev": "jest --watchAll",
-    "server": "http-server"
+    "server": "http-server build"
   },
   "repository": {
     "type": "git",
