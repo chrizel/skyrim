@@ -4,16 +4,16 @@ This is the source repository of the Skyrim perk calculator at [chrizel.github.i
 
 ## Build and Development
 
-This project uses [TypeScript](https://www.typescriptlang.org/), so if you make changes to the source code please make them in the TypeScript files under `src/`. The js files in `build/` are only the build products from the TypeScript compiler. The `build/` directory is also part of the versioned repository because the site is hosted via GitHub Pages.
+This project uses [TypeScript](https://www.typescriptlang.org/), so if you make changes to the source code please make them in the TypeScript files under `src/`. GitHub Actions is used to build and deploy the project on every push to [chrizel.github.io/skyrim/](https://chrizel.github.io/skyrim/).
 
-To build this project yourself you need a current [NodeJS](https://nodejs.org/en/) version.
+To build this project yourself locally you need a current [NodeJS](https://nodejs.org/en/) version.
 
 After cloning this repository you should run `npm install` inside of the repository root directory to get the latest build dependencies from `package.json`. Then you have the following possibilities:
 
-- `npm run build` to compile the files from `src/` to `build/`. The `index.html` uses the JavaScript files from `build/` to run the site.
+- `npm run build` to build the project.
 - `npm test` to run the unit tests.
 - `npm run test:dev` to run the unit tests in watch mode.
-- `npm run server` to launch a local HTTP server to run the site on your local machine for testing.
+- `npm run server` to launch a local HTTP server to run the site on your local machine for testing. This requires a build run beforehand.
 
 ## History
 
