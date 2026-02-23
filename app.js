@@ -9,7 +9,11 @@ const TREE_COLS = 3;
 const TREE_PADDING = 5;
 const TREE_WIDTH = 100;
 const TREE_HEIGHT = 127;
-let activePerkLevels = {};
+export let activePerkLevels = {};
+// used in unit tests
+export const resetActivePerkLevels = () => {
+    activePerkLevels = {};
+};
 const perkTreeViews = [];
 const perkTreeId = (perkTree) => {
     let i = 0;
@@ -77,7 +81,7 @@ const forEachChildOfPerk = (thePerk, func) => {
         }
     }
 };
-const getPerkLevel = (perk) => {
+export const getPerkLevel = (perk) => {
     var _a;
     const id = perkId(perk);
     return (_a = activePerkLevels[id]) !== null && _a !== void 0 ? _a : 0;
@@ -148,7 +152,7 @@ const getPerkInfos = (perkTree) => {
     }
     return result;
 };
-const changePerkLevel = (perk, inc) => {
+export const changePerkLevel = (perk, inc) => {
     let ok = true;
     const maxLevels = perk.levels || 1;
     const activeLevel = getPerkLevel(perk);
@@ -170,7 +174,17 @@ const changePerkLevel = (perk, inc) => {
         }
     }
     else if (newLevel == 0) {
-        forEachChildOfPerk(perk, (child) => changePerkLevel(child, inc * 100));
+        forEachChildOfPerk(perk, (child) => {
+            let hasOtherActiveParents = false;
+            forEachParentOfPerk(child, (parent) => {
+                if (parent !== perk && getPerkLevel(parent) > 0) {
+                    hasOtherActiveParents = true;
+                }
+            });
+            if (!hasOtherActiveParents) {
+                changePerkLevel(child, inc * 100);
+            }
+        });
     }
     activePerkLevels[perkId(perk)] = newLevel;
 };
